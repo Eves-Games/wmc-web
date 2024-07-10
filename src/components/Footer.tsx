@@ -23,8 +23,8 @@ export async function Footer() {
         <Link href="/" className="link-hover link">
           Home
         </Link>
-        <Link href="/" className="link-hover link">
-          Wiki
+        <Link href="https://discord.gg/ZFQwB7DKqW" target="_blank" className="link-hover link">
+          Discord
         </Link>
       </nav>
       <nav>
