@@ -7,7 +7,7 @@ export default function CopyIp() {
     const [copied, setCopied] = useState<boolean>(false);
 
     const copyToClipboard = () => {
-        navigator.clipboard.writeText("worldmc.net").then(() => {
+        navigator.clipboard.writeText("play.worldmc.net").then(() => {
             setCopied(true);
             setTimeout(() => setCopied(false), 1000);
         });
@@ -23,7 +23,7 @@ export default function CopyIp() {
             ) : (
                 <>
                     <Clipboard />
-                    worldmc.net
+                    play.worldmc.net
                 </>
             )}
         </button>
