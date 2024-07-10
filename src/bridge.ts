@@ -45,7 +45,7 @@ interface Town extends PartialTown {
 }
 
 export async function getTowns(): Promise<Town[]> {
-  const res = await fetch("https://test.worldmc.net:7700/towns", {
+  const res = await fetch("https://node.worldmc.net:7700/towns", {
     headers: { apiKey: process.env.BRIDGE_KEY! },
   });
 
@@ -57,7 +57,7 @@ export async function getTowns(): Promise<Town[]> {
 }
 
 export async function getTown(UUID: string): Promise<Town> {
-  const res = await fetch(`https://test.worldmc.net:7700/towns/${UUID}`, {
+  const res = await fetch(`https://node.worldmc.net:7700/towns/${UUID}`, {
     headers: { apiKey: process.env.BRIDGE_KEY! },
   });
 
@@ -69,7 +69,7 @@ export async function getTown(UUID: string): Promise<Town> {
 }
 
 export async function createTown(name: string, board: string, mayorUUID: string): Promise<Town> {
-  const res = await fetch(`https://test.worldmc.net:7700/towns/create`, {
+  const res = await fetch(`https://node.worldmc.net:7700/towns/create`, {
     method: "POST",
     headers: {
       apiKey: process.env.BRIDGE_KEY!,
@@ -89,7 +89,7 @@ export async function createTown(name: string, board: string, mayorUUID: string)
 }
 
 export async function getTownResidents(UUID: string): Promise<Resident[]> {
-  const res = await fetch(`https://test.worldmc.net:7700/towns/${UUID}/residents`, {
+  const res = await fetch(`https://node.worldmc.net:7700/towns/${UUID}/residents`, {
     headers: { apiKey: process.env.BRIDGE_KEY! },
   });
 
@@ -101,7 +101,7 @@ export async function getTownResidents(UUID: string): Promise<Resident[]> {
 }
 
 export async function getResident(UUID: string): Promise<Resident> {
-  const res = await fetch(`https://test.worldmc.net:7700/residents/${UUID}`, {
+  const res = await fetch(`https://node.worldmc.net:7700/residents/${UUID}`, {
     headers: { apiKey: process.env.BRIDGE_KEY! },
   });
 
@@ -113,7 +113,7 @@ export async function getResident(UUID: string): Promise<Resident> {
 }
 
 export async function getResidentFriends(UUID: string): Promise<Resident[]> {
-  const res = await fetch(`https://test.worldmc.net:7700/residents/${UUID}/friends`, {
+  const res = await fetch(`https://node.worldmc.net:7700/residents/${UUID}/friends`, {
     headers: { apiKey: process.env.BRIDGE_KEY! },
   });
 
