@@ -50,7 +50,7 @@ export default function Home() {
               <p className="py-6">
                 Experience the thrill of a bustling Minecraft world like never before. WorldMC harnesses the power of Paper Folia, a
                 cutting-edge server software, to support up to 500 players simultaneously. This means more interactions, grander cities, and
-                epic battles on a scale you've never seen in Minecraft. Join a vibrant community where every login brings new adventures and
+                epic battles on a scale you&apos;ve never seen in Minecraft. Join a vibrant community where every login brings new adventures and
                 opportunities.
               </p>
             </div>
