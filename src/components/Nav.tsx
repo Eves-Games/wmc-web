@@ -33,8 +33,7 @@ const NavLinks = [
   },
   {
     name: "Vote",
-    target: "_blank",
-    href: "http://map.worldmc.net",
+    href: "/vote",
     icon: <Vote className="size-5" />,
   },
 ] satisfies Array<LinkHref>;
