@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Building2, Map, Menu, Vote } from "lucide-react";
+import { Building2, Map, Menu, Store, Vote } from "lucide-react";
 import { ReactNode } from "react";
 import { NavUser } from "@/components/NavUser";
 import DiscordLogo from "./DiscordLogo";
@@ -35,6 +35,11 @@ const NavLinks = [
     name: "Vote",
     href: "/vote",
     icon: <Vote className="size-5" />,
+  },
+  {
+    name: "Store",
+    href: "https://https://worldmc-710.tebex.io/",
+    icon: <Store className="size-5" />,
   },
 ] satisfies Array<LinkHref>;
 
