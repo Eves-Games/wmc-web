@@ -38,7 +38,8 @@ const NavLinks = [
   },
   {
     name: "Store",
-    href: "https://https://worldmc-710.tebex.io/",
+    target: "_blank",
+    href: "https://worldmc-710.tebex.io/",
     icon: <Store className="size-5" />,
   },
 ] satisfies Array<LinkHref>;
