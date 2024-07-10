@@ -7,7 +7,7 @@ export async function GET(
 ) {
   const { username } = params;
 
-  const callback = `${getBaseUrl}/api/gateway/${username}/verify`;
+  const callback = `${getBaseUrl()}/api/gateway/${username}/verify`;
   const style = "simple";
 
   const redirectUrl = `https://api.minecraft.id/gateway/start/${username}?callback=${encodeURIComponent(callback)}&style=${style}`;

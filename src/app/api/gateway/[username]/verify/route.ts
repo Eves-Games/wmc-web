@@ -30,19 +30,19 @@ export async function GET(
           maxAge: 24 * 60 * 60,
           sameSite: "strict",
         });
-        const callbackUrl = `${getBaseUrl}/callback?status=VERIFIED`;
+        const callbackUrl = `${getBaseUrl()}/callback?status=VERIFIED`;
         return NextResponse.redirect(callbackUrl);
       } else {
-        const callbackUrl = `${getBaseUrl}/callback?status=NOT_VERIFIED`;
+        const callbackUrl = `${getBaseUrl()}/callback?status=NOT_VERIFIED`;
         return NextResponse.redirect(callbackUrl);
       }
     } catch (error) {
       console.error("Failed to verify authentication:", error);
-      const callbackUrl = `${getBaseUrl}/callback?status=ERROR`;
+      const callbackUrl = `${getBaseUrl()}/callback?status=ERROR`;
       return NextResponse.redirect(callbackUrl);
     }
   } else {
-    const callbackUrl = `${getBaseUrl}/callback?status=ERROR`;
+    const callbackUrl = `${getBaseUrl()}/callback?status=ERROR`;
     return NextResponse.redirect(callbackUrl);
   }
 }
