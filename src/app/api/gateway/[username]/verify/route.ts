@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
+import { getBaseUrl } from "@/auth";
 
 export async function GET(
   request: NextRequest,
@@ -29,19 +30,19 @@ export async function GET(
           maxAge: 24 * 60 * 60,
           sameSite: "strict",
         });
-        const callbackUrl = `http://localhost:3000/callback?status=VERIFIED`;
+        const callbackUrl = `${getBaseUrl}/callback?status=VERIFIED`;
         return NextResponse.redirect(callbackUrl);
       } else {
-        const callbackUrl = `http://localhost:3000/callback?status=NOT_VERIFIED`;
+        const callbackUrl = `${getBaseUrl}/callback?status=NOT_VERIFIED`;
         return NextResponse.redirect(callbackUrl);
       }
     } catch (error) {
       console.error("Failed to verify authentication:", error);
-      const callbackUrl = `http://localhost:3000/callback?status=ERROR`;
+      const callbackUrl = `${getBaseUrl}/callback?status=ERROR`;
       return NextResponse.redirect(callbackUrl);
     }
   } else {
-    const callbackUrl = `http://localhost:3000/callback?status=ERROR`;
+    const callbackUrl = `${getBaseUrl}/callback?status=ERROR`;
     return NextResponse.redirect(callbackUrl);
   }
 }
