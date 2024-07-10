@@ -70,7 +70,7 @@ export default function Page() {
 
   return (
     <section className="space-y-4 text-center">
-      <h1 className="text-5xl font-black">banner creator</h1>
+      <h1 className="text-5xl font-black">Banner Creator</h1>
       <div className="flex flex-col items-center space-y-4">
         <div role="tablist" className="tabs tabs-lifted tabs-lg">
           <button

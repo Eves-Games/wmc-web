@@ -11,7 +11,7 @@ export default async function Page() {
 
   return (
     <section className="space-y-4 text-center">
-      <h1 className="text-5xl font-black">towns</h1>
+      <h1 className="text-5xl font-black">Towns</h1>
       <div className="flex gap-2">
         <label className="input input-bordered flex w-full items-center gap-2">
           <input type="text" className="grow" placeholder="Search" />
