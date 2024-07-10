@@ -1,5 +1,5 @@
 import { getAuthenticatedUser } from "@/auth";
-import { getResident, getTown, getTowns } from "@/bridge";
+import { getResident, getTowns } from "@/bridge";
 import { Building2, Plus, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

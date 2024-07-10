@@ -1,19 +1,7 @@
-"use client";
-
-import { Check, Clipboard } from "lucide-react";
+import CopyIp from "@/components/CopyIp";
 import Image from "next/image";
-import { useState } from "react";
 
 export default function Home() {
-  const [copied, setCopied] = useState<boolean>(false);
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText("worldmc.net").then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1000);
-    });
-  };
-
   return (
     <section className="space-y-4">
       <div className="hero rounded-box bg-base-200 py-8 shadow">
@@ -25,19 +13,7 @@ export default function Home() {
               Explore a 1:1000 Earth map in Minecraft. Build empires, engage in politics, and shape the global economy in this immersive,
               player-driven world.
             </p>
-            <button onClick={copyToClipboard} className="btn btn-primary">
-              {copied ? (
-                <>
-                  <Check />
-                  Copied!
-                </>
-              ) : (
-                <>
-                  <Clipboard />
-                  worldmc.net
-                </>
-              )}
-            </button>
+            <CopyIp />
           </div>
         </div>
       </div>
@@ -91,7 +67,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
     </section>
   );
 }
