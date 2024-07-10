@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Building2, Map, Menu } from "lucide-react";
+import { Building2, Map, Menu, Vote } from "lucide-react";
 import { ReactNode } from "react";
 import { NavUser } from "@/components/NavUser";
 import DiscordLogo from "./DiscordLogo";
@@ -17,7 +17,7 @@ const NavLinks = [
   {
     name: "Discord",
     target: "_blank",
-    href: "/",
+    href: "https://discord.gg/ZFQwB7DKqW",
     icon: <DiscordLogo className="size-5 fill-neutral" />,
   },
   {
@@ -30,6 +30,12 @@ const NavLinks = [
     target: "_blank",
     href: "http://map.worldmc.net",
     icon: <Map className="size-5" />,
+  },
+  {
+    name: "Vote",
+    target: "_blank",
+    href: "http://map.worldmc.net",
+    icon: <Vote className="size-5" />,
   },
 ] satisfies Array<LinkHref>;
 
