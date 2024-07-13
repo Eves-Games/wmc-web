@@ -1,5 +1,7 @@
 "use server"
 
+export const runtime = 'edge';
+
 interface PartialResident {
   name: string;
   UUID: string;
