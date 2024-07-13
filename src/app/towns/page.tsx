@@ -4,6 +4,8 @@ import { Building2, Plus, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+export const revalidate = 900;
+
 export default async function Page() {
   const towns = await getTowns();
   const user = getAuthenticatedUser();
