@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Building2, Map, Menu, Store, Vote } from "lucide-react";
+import { Building2, Map, Menu, Scroll, Store, Vote } from "lucide-react";
 import { ReactNode } from "react";
 import { NavUser } from "@/components/NavUser";
 import DiscordLogo from "./DiscordLogo";
@@ -42,6 +42,11 @@ const NavLinks = [
     href: "https://worldmc-710.tebex.io/",
     icon: <Store className="size-5" />,
   },
+  {
+    name: "Rules",
+    href: "/rules",
+    icon: <Scroll className="size-5" />,
+  },
 ] satisfies Array<LinkHref>;
 
 export default async function Nav() {
@@ -60,7 +65,7 @@ export default async function Nav() {
           />
           <h1 className="text-xl font-black">WorldMC</h1>
         </Link>
-        <div className="dropdown-start dropdown md:hidden">
+        <div className="dropdown-start dropdown lg:hidden">
           <div tabIndex={0} role="button" className="btn btn-ghost">
             <Menu className="size-5" />
           </div>
@@ -79,7 +84,7 @@ export default async function Nav() {
           </ul>
         </div>
         {NavLinks.map((LinkHref) => (
-          <li key={LinkHref.name} className="hidden md:block">
+          <li key={LinkHref.name} className="hidden lg:block">
             <Link href={LinkHref.href} target={LinkHref.target}>{LinkHref.name}</Link>
           </li>
         ))}
