@@ -30,8 +30,7 @@ export default function RulesPage() {
             title: "Griefing and Land Management",
             icon: <Map className="size-6 text-green-500" />,
             rules: [
-                "Griefing and stealing within your own town is not allowed.",
-                "Raiding and stealing from other towns is permitted, but towns should set up proper protections.",
+                "Griefing and stealing within your own town or nation is not allowed.",
                 "Do not damage land within or around claims.",
                 "Griefing in wilderness is allowed, but may be rolled back.",
                 "Follow town claiming rules to ensure fair expansion.",
