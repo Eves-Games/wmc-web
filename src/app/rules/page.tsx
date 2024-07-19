@@ -22,7 +22,6 @@ export default function RulesPage() {
                 "No spamming or disruptive behavior in chat.",
                 "Bullying, hate speech, and explicit content are prohibited.",
                 "Do not impersonate other players or entities.",
-                "AFK time is limited to 15 minutes.",
                 "Respect others' personal information and privacy.",
                 "Use English in global chat channels.",
             ],
