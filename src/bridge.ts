@@ -1,5 +1,7 @@
 "use server"
 
+import { getEnvironment } from "./environment";
+
 interface PartialResident {
   name: string;
   UUID: string;
@@ -44,22 +46,44 @@ interface Town extends PartialTown {
   };
 }
 
+function getApiUrl(): string {
+  const env = getEnvironment();
+  if (env === 'development') {
+    return 'https://towny.worldmc.net/dev';
+  }
+  return 'https://towny.worldmc.net';
+}
+
+function getBridgeKey(): string {
+  const env = getEnvironment();
+  if (env === 'development') {
+    return process.env.DEV_BRIDGE_KEY!;
+  }
+  return process.env.BRIDGE_KEY!;
+}
+
+async function fetchWithAuth(url: string, options: RequestInit = {}): Promise<Response> {
+  const baseUrl = getApiUrl();
+  const fullUrl = `${baseUrl}${url}`;
+  console.log(fullUrl)
+  
+  const headers = new Headers(options.headers);
+  headers.set('apiKey', getBridgeKey());
+  console.log(getBridgeKey())
+
+  return fetch(fullUrl, { ...options, headers });
+}
+
 export async function getTowns(): Promise<Town[]> {
-  const res = await fetch("https://node.worldmc.net:7700/towns", {
-    headers: { apiKey: process.env.BRIDGE_KEY! },
-  });
+  const res = await fetchWithAuth("/towns");
 
   if (!res.ok) throw new Error("Cannot get towns!");
 
-  const data = await res.json();
-
-  return data;
+  return res.json();
 }
 
 export async function getTown(UUID: string): Promise<Town> {
-  const res = await fetch(`https://node.worldmc.net:7700/towns/${UUID}`, {
-    headers: { apiKey: process.env.BRIDGE_KEY! },
-  });
+  const res = await fetchWithAuth(`/towns/${UUID}`)
 
   if (!res.ok) throw new Error("Cannot get town!");
 
@@ -69,10 +93,9 @@ export async function getTown(UUID: string): Promise<Town> {
 }
 
 export async function createTown(name: string, board: string, mayorUUID: string): Promise<Town> {
-  const res = await fetch(`https://node.worldmc.net:7700/towns/create`, {
+  const res = await fetchWithAuth(`/towns/create`, {
     method: "POST",
     headers: {
-      apiKey: process.env.BRIDGE_KEY!,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({name, board, mayorUUID}),
@@ -89,9 +112,7 @@ export async function createTown(name: string, board: string, mayorUUID: string)
 }
 
 export async function getTownResidents(UUID: string): Promise<Resident[]> {
-  const res = await fetch(`https://node.worldmc.net:7700/towns/${UUID}/residents`, {
-    headers: { apiKey: process.env.BRIDGE_KEY! },
-  });
+  const res = await fetchWithAuth(`/towns/${UUID}/residents`)
 
   if (!res.ok) throw new Error("Cannot get town residents!");
 
@@ -101,9 +122,7 @@ export async function getTownResidents(UUID: string): Promise<Resident[]> {
 }
 
 export async function getResident(UUID: string): Promise<Resident> {
-  const res = await fetch(`https://node.worldmc.net:7700/residents/${UUID}`, {
-    headers: { apiKey: process.env.BRIDGE_KEY! },
-  });
+  const res = await fetchWithAuth(`/residents/${UUID}`)
 
   if (!res.ok) throw new Error("Cannot get resident!");
 
@@ -113,13 +132,9 @@ export async function getResident(UUID: string): Promise<Resident> {
 }
 
 export async function getResidentFriends(UUID: string): Promise<Resident[]> {
-  const res = await fetch(`https://node.worldmc.net:7700/residents/${UUID}/friends`, {
-    headers: { apiKey: process.env.BRIDGE_KEY! },
-  });
+  const res = await fetchWithAuth(`/residents/${UUID}/friends`);
 
   if (!res.ok) throw new Error("Cannot get resident friends!");
 
-  const data = await res.json();
-
-  return data;
+  return res.json();
 }
