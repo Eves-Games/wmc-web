@@ -7,11 +7,6 @@ interface DecodedToken {
   exp: number;
 }
 
-export const getBaseUrl = () => {
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`
-  return 'http://localhost:3000' // default to localhost for local development
-}
-
 export function getAuthenticatedUser() {
   const cookieStore = cookies();
   const token = cookieStore.get('accessToken')?.value;
