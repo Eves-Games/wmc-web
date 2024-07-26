@@ -54,22 +54,12 @@ function getApiUrl(): string {
   return 'https://towny.worldmc.net';
 }
 
-function getBridgeKey(): string {
-  const env = getEnvironment();
-  if (env === 'development') {
-    return process.env.DEV_BRIDGE_KEY!;
-  }
-  return process.env.BRIDGE_KEY!;
-}
-
 async function fetchWithAuth(url: string, options: RequestInit = {}): Promise<Response> {
   const baseUrl = getApiUrl();
   const fullUrl = `${baseUrl}${url}`;
-  console.log(fullUrl)
   
   const headers = new Headers(options.headers);
-  headers.set('apiKey', getBridgeKey());
-  console.log(getBridgeKey())
+  headers.set('apiKey', process.env.BRIDGE_KEY!);
 
   return fetch(fullUrl, { ...options, headers });
 }
