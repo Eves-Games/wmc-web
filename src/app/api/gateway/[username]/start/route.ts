@@ -1,4 +1,4 @@
-import { getBaseUrl } from "@/auth";
+import { getBaseUrl } from "@/environment";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
@@ -7,7 +7,7 @@ export async function GET(
 ) {
   const { username } = params;
 
-  const callback = `https://worldmc.net/api/gateway/${username}/verify`;
+  const callback = `${getBaseUrl()}/api/gateway/${username}/verify`;
   const style = "simple";
 
   const redirectUrl = `https://api.minecraft.id/gateway/start/${username}?callback=${encodeURIComponent(callback)}&style=${style}`;

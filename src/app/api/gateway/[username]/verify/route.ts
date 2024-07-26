@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
-import { getBaseUrl } from "@/auth";
+
+const baseUrl = process.env.NODE_ENV === 'development' 
+  ? 'http://localhost:3000' 
+  : 'https://worldmc.net';
 
 export async function GET(
   request: NextRequest,
@@ -30,19 +33,19 @@ export async function GET(
           maxAge: 24 * 60 * 60,
           sameSite: "strict",
         });
-        const callbackUrl = `https://worldmc.net/callback?status=VERIFIED`;
+        const callbackUrl = `${baseUrl}/callback?status=VERIFIED`;
         return NextResponse.redirect(callbackUrl);
       } else {
-        const callbackUrl = `https://worldmc.net/callback?status=NOT_VERIFIED`;
+        const callbackUrl = `${baseUrl}/callback?status=NOT_VERIFIED`;
         return NextResponse.redirect(callbackUrl);
       }
     } catch (error) {
       console.error("Failed to verify authentication:", error);
-      const callbackUrl = `https://worldmc.net/callback?status=ERROR`;
+      const callbackUrl = `${baseUrl}/callback?status=ERROR`;
       return NextResponse.redirect(callbackUrl);
     }
   } else {
-    const callbackUrl = `https://worldmc.net/callback?status=ERROR`;
+    const callbackUrl = `${baseUrl}/callback?status=ERROR`;
     return NextResponse.redirect(callbackUrl);
   }
 }
