@@ -17,7 +17,7 @@ const NavLinks = [
   {
     name: "Discord",
     target: "_blank",
-    href: "https://discord.gg/ZFQwB7DKqW",
+    href: "https://discord.gg/g4stgqxahv",
     icon: <DiscordLogo className="size-5 fill-neutral" />,
   },
   {
