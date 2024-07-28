@@ -3,10 +3,10 @@ import Link from "next/link";
 
 export default async function Page() {
     const voteLinks = [
-        { name: "Minecraft-MP", url: "https://minecraft-mp.com/server/334140/vote/" },
-        { name: "Planet Minecraft", url: "https://www.planetminecraft.com/server/worldmc-6338018/vote/" },
-        { name: "Minecraft Servers", url: "https://minecraftservers.org/vote/664170" },
-        { name: "TopG", url: "https://topg.org/minecraft-servers/server-665345" },
+        { name: "Minecraft-MP", url: "https://minecraft-mp.com/server/334708/vote/" },
+        { name: "Planet Minecraft", url: "https://www.planetminecraft.com/server/worldmc-6355473/vote/" },
+        { name: "Minecraft Servers", url: "https://minecraftservers.org/vote/664730" },
+        { name: "TopG", url: "https://topg.org/minecraft-servers/server-665790" },
     ];
 
     const milestones = [
