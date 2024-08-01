@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
 import "./globals.css";
-import Nav from "@/components/Nav";
 import { twMerge } from "tailwind-merge";
 import { Footer } from "@/components/Footer";
 import { SignInModal } from "@/components/modals/SignIn";
+import Nav from "@/components/Nav";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -26,13 +26,13 @@ export default function RootLayout({
       <body
         className={twMerge(
           rubik.className,
-          "mx-auto grid h-screen max-w-screen-xl grid-rows-[auto_1fr_auto] px-8",
+          "mx-auto grid h-screen max-w-screen-xl grid-rows-[auto_1fr_auto] px-8 py-4 space-y-4"
         )}
       >
-        <Nav />
-        <SignInModal />
-        {children}
-        <Footer />
+          <Nav />
+          <SignInModal />
+          {children}
+          <Footer />
       </body>
     </html>
   );

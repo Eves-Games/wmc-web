@@ -2,7 +2,7 @@ import { getAuthenticatedUser } from "@/auth";
 import { getResident, getResidentFriends } from "@/bridge";
 import { formatDateTime } from "@/format";
 import clsx from "clsx";
-import { Ellipsis, UserRoundMinus } from "lucide-react";
+import { Clock, Crown, Ellipsis, Shield, Star, UserRoundMinus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -16,7 +16,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
 
   return (
     <section className="space-y-4">
-      <div className="relative flex gap-4 rounded-box bg-base-200 p-4 shadow">
+      <div className="relative flex gap-4 rounded-box bg-gradient-to-r from-base-200 to-blue-200 p-4 shadow-lg">
         <figure className="drop-shadow-lg">
           <div className="banner bg-contain bg-no-repeat" style={{backgroundImage: `url(https://crafatar.com/renders/body/${resident.UUID}?size=156&default=MHF_Steve&overlay)`}} />
         </figure>
@@ -41,8 +41,11 @@ export default async function Page({ params }: { params: { uuid: string } }) {
 
           <div className="flex flex-col justify-between gap-2 md:flex-row md:items-end">
             <div className="flex gap-2">
+            {resident.isKing && <div className="badge badge-lg bg-yellow-400 text-black"><Crown className="w-4 h-4 mr-1" /> King</div>}
+            {resident.isMayor && <div className="badge badge-lg bg-green-400 text-black"><Shield className="w-4 h-4 mr-1" /> Mayor</div>}
+            {resident.isAdmin && <div className="badge badge-lg bg-red-400 text-black"><Star className="w-4 h-4 mr-1" /> Admin</div>}
               <div className="badge badge-lg bg-indigo-400 text-black">{resident.plotsCount} plots</div>
-              <div className="badge badge-info badge-lg">{friends.length} friends</div>
+              <div className="badge badge-info badge-lg">{friends.data.length} friends</div>
             </div>
             <button className={clsx("btn btn-outline", isMe && "hidden")}>Add Friend</button>
           </div>
@@ -65,9 +68,9 @@ export default async function Page({ params }: { params: { uuid: string } }) {
       <h2 className="text-xl font-black">About</h2>
       <p>{resident.about}</p>
       <hr />
-      <h2 className="text-xl font-black">Friends ({friends.length})</h2>
+      <h2 className="text-xl font-black">Friends ({friends.data.length})</h2>
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-5 lg:grid-cols-7">
-        {friends.map((resident) => (
+        {friends.data.map((resident) => (
           <div className="flex flex-col items-center" key={resident.UUID}>
             <Image
               src={`https://crafatar.com/avatars/${resident.UUID}?size=100&default=MHF_Steve&overlay`}

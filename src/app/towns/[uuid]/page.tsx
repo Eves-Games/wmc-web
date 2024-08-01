@@ -1,11 +1,13 @@
 import { getAuthenticatedUser } from "@/auth";
-import { getResident, getTown, getTownResidents } from "@/bridge";
+import { getTown, getTownResidents, getResident } from "@/bridge";
 import { generateBanner } from "@/banners";
 import { formatDateTime } from "@/format";
 import clsx from "clsx";
 import { Ellipsis, LogOut, Pencil } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+export const revalidate = 900;
 
 export default async function Page({ params }: { params: { uuid: string } }) {
   const user = getAuthenticatedUser();
@@ -16,7 +18,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
 
   const hasTown = resident && resident.town;
   const isResident = hasTown && resident.town!.UUID == town.UUID;
-  const isMayor = user && town.mayor.name == user.username;
+  const isMayor = user && town.mayor.UUID == user.uuid;
 
   return (
     <section className="space-y-4">
@@ -41,7 +43,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
           <div className="flex flex-col justify-between gap-2 md:flex-row md:items-end">
             <div className="flex gap-2">
               <div className="badge badge-lg bg-indigo-400 text-black">level {town.level}</div>
-              <div className="badge badge-info badge-lg">{residents.length} residents</div>
+              <div className="badge badge-info badge-lg">{residents.data.length} residents</div>
               <div className={clsx("badge badge-lg", town.isPublic ? "badge-primary" : "badge-warning")}>
                 {town.isPublic ? "public" : "invite-only"}
               </div>
@@ -72,14 +74,14 @@ export default async function Page({ params }: { params: { uuid: string } }) {
       </div>
       <h2 className="text-xl font-black">Settings</h2>
       <div className="grid auto-cols-max grid-flow-col gap-2">
-        <div className={clsx("badge badge-lg", town.settings.hasPVP ? "badge-primary" : "badge-accent")}>pvp</div>
-        <div className={clsx("badge badge-lg", town.settings.hasFire ? "badge-primary" : "badge-accent")}>
+        <div className={clsx("badge badge-lg", town.settings.pvp ? "badge-primary" : "badge-accent")}>pvp</div>
+        <div className={clsx("badge badge-lg", town.settings.fire ? "badge-primary" : "badge-accent")}>
           fire spread
         </div>
-        <div className={clsx("badge badge-lg", town.settings.hasMobs ? "badge-primary" : "badge-accent")}>
+        <div className={clsx("badge badge-lg", town.settings.mobs ? "badge-primary" : "badge-accent")}>
           hostile mobs
         </div>
-        <div className={clsx("badge badge-lg", town.settings.hasExplosions ? "badge-primary" : "badge-accent")}>
+        <div className={clsx("badge badge-lg", town.settings.explosions ? "badge-primary" : "badge-accent")}>
           explosions
         </div>
       </div>
@@ -87,9 +89,9 @@ export default async function Page({ params }: { params: { uuid: string } }) {
       <h2 className="text-xl font-black">Board</h2>
       <p>{town.board}</p>
       <hr />
-      <h2 className="text-xl font-black">Residents ({residents.length})</h2>
+      <h2 className="text-xl font-black">Residents ({residents.data.length})</h2>
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-5 lg:grid-cols-7">
-        {residents.map((resident) => (
+        {residents.data.map((resident) => (
           <div className="flex flex-col items-center" key={resident.UUID}>
             <Image
               src={`https://crafatar.com/avatars/${resident.UUID}?size=96&default=MHF_Steve&overlay`}

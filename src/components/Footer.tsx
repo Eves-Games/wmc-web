@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export async function Footer() {
   return (
-    <footer className="footer p-10">
+    <footer className="footer p-10 bg-base-100 rounded-box shadow-lg">
       <aside>
       <Image
             src={'/worldmc.png'}
@@ -23,7 +23,7 @@ export async function Footer() {
         <Link href="/" className="link-hover link">
           Home
         </Link>
-        <Link href="https://discord.gg/ZFQwB7DKqW" target="_blank" className="link-hover link">
+        <Link href="https://discord.gg/g4stgqxahv" target="_blank" className="link-hover link">
           Discord
         </Link>
       </nav>
