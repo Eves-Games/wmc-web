@@ -3,7 +3,7 @@ import { getNation, getNationTowns, getResident } from "@/bridge";
 import { generateBanner } from "@/banners";
 import { formatDateTime } from "@/format";
 import clsx from "clsx";
-import { AlertTriangle, DollarSign, Ellipsis, LogOut, Pencil, Percent, TrendingUp } from "lucide-react";
+import { AlertTriangle, ChevronLeft, ChevronRight, DollarSign, Ellipsis, LogOut, Pencil, Percent, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import MinecraftItem from "@/components/minecraft/MinecraftItem";
 
@@ -123,7 +123,18 @@ export default async function Page({ params }: { params: { uuid: string } }) {
         </div>
       </div>
       <hr />
-      <h2 className="text-xl font-black">Towns ({nation.numTowns})</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-black">Towns</h2>
+        <div className="flex gap-4">
+          <button className="btn btn-disabled btn-ghost btn-xs">
+            <ChevronLeft />
+          </button>
+          <p>Page 1</p>
+          <button className="btn btn-disabled btn-ghost btn-xs">
+            <ChevronRight />
+          </button>
+        </div>
+      </div>
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-5 lg:grid-cols-7">
         {towns.data.map((town) => (
           <div className="flex flex-col items-center" key={town.UUID}>
