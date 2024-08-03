@@ -22,10 +22,8 @@ export default async function Page({ params }: { params: { uuid: string } }) {
 
   return (
     <section className="space-y-4">
-      <div className="relative flex gap-4 rounded-box bg-base-200 p-4 shadow">
-        <figure className="drop-shadow-lg">
-          {generateBanner("white-dye", { name: "Creeper Charge", colour: "red-dye" }, null)}
-        </figure>
+      <div className="relative flex gap-4 rounded-box bg-gradient-to-r from-base-200 to-blue-200 p-4 shadow-lg">
+        <figure className="drop-shadow-lg">{generateBanner("white-dye", { name: "Creeper Charge", colour: "red-dye" }, null)}</figure>
         <div className="flex w-full flex-col justify-between">
           <div>
             <h1 className="text-xl font-black">{town.name}</h1>
@@ -75,15 +73,9 @@ export default async function Page({ params }: { params: { uuid: string } }) {
       <h2 className="text-xl font-black">Settings</h2>
       <div className="grid auto-cols-max grid-flow-col gap-2">
         <div className={clsx("badge badge-lg", town.settings.pvp ? "badge-primary" : "badge-accent")}>pvp</div>
-        <div className={clsx("badge badge-lg", town.settings.fire ? "badge-primary" : "badge-accent")}>
-          fire spread
-        </div>
-        <div className={clsx("badge badge-lg", town.settings.mobs ? "badge-primary" : "badge-accent")}>
-          hostile mobs
-        </div>
-        <div className={clsx("badge badge-lg", town.settings.explosions ? "badge-primary" : "badge-accent")}>
-          explosions
-        </div>
+        <div className={clsx("badge badge-lg", town.settings.fire ? "badge-primary" : "badge-accent")}>fire spread</div>
+        <div className={clsx("badge badge-lg", town.settings.mobs ? "badge-primary" : "badge-accent")}>hostile mobs</div>
+        <div className={clsx("badge badge-lg", town.settings.explosions ? "badge-primary" : "badge-accent")}>explosions</div>
       </div>
       <hr />
       <h2 className="text-xl font-black">Board</h2>

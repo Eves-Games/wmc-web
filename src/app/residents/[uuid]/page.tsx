@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default async function Page({ params }: { params: { uuid: string } }) {
   const user = getAuthenticatedUser();
-  
+
   const resident = await getResident(params.uuid);
   const friends = await getResidentFriends(params.uuid);
 
@@ -16,9 +16,12 @@ export default async function Page({ params }: { params: { uuid: string } }) {
 
   return (
     <section className="space-y-4">
-      <div className="relative flex gap-4 rounded-box bg-gradient-to-r from-base-200 to-blue-200 p-4 shadow-lg">
+      <div className="relative flex gap-4 rounded-box bg-gradient-to-r from-base-200 to-green-200 p-4 shadow-lg">
         <figure className="drop-shadow-lg">
-          <div className="banner bg-contain bg-no-repeat" style={{backgroundImage: `url(https://crafatar.com/renders/body/${resident.UUID}?size=156&default=MHF_Steve&overlay)`}} />
+          <div
+            className="banner bg-contain bg-no-repeat"
+            style={{ backgroundImage: `url(https://crafatar.com/renders/body/${resident.UUID}?size=156&default=MHF_Steve&overlay)` }}
+          />
         </figure>
         <div className="flex w-full flex-col justify-between">
           <div>
@@ -26,10 +29,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
             <p>
               <span>Resident of </span>
               {resident.town ? (
-                <Link
-                  href={`/towns/${resident.town.UUID}`}
-                  className="link link-secondary"
-                >
+                <Link href={`/towns/${resident.town.UUID}`} className="link link-secondary">
                   {resident.town.name}
                 </Link>
               ) : (
@@ -41,9 +41,21 @@ export default async function Page({ params }: { params: { uuid: string } }) {
 
           <div className="flex flex-col justify-between gap-2 md:flex-row md:items-end">
             <div className="flex gap-2">
-            {resident.isKing && <div className="badge badge-lg bg-yellow-400 text-black"><Crown className="w-4 h-4 mr-1" /> King</div>}
-            {resident.isMayor && <div className="badge badge-lg bg-green-400 text-black"><Shield className="w-4 h-4 mr-1" /> Mayor</div>}
-            {resident.isAdmin && <div className="badge badge-lg bg-red-400 text-black"><Star className="w-4 h-4 mr-1" /> Admin</div>}
+              {resident.isKing && (
+                <div className="badge badge-lg bg-yellow-400 text-black">
+                  <Crown className="mr-1 h-4 w-4" /> King
+                </div>
+              )}
+              {resident.isMayor && (
+                <div className="badge badge-lg bg-green-400 text-black">
+                  <Shield className="mr-1 h-4 w-4" /> Mayor
+                </div>
+              )}
+              {resident.isAdmin && (
+                <div className="badge badge-lg bg-red-400 text-black">
+                  <Star className="mr-1 h-4 w-4" /> Admin
+                </div>
+              )}
               <div className="badge badge-lg bg-indigo-400 text-black">{resident.plotsCount} plots</div>
               <div className="badge badge-info badge-lg">{friends.data.length} friends</div>
             </div>
@@ -79,10 +91,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
               height={100}
               className="col-span-full p-2"
             />
-            <Link
-              href={`/residents/${resident.UUID}`}
-              className="btn btn-sm w-full shadow"
-            >
+            <Link href={`/residents/${resident.UUID}`} className="btn btn-sm w-full shadow">
               <p className="truncate">{resident.name}</p>
             </Link>
           </div>
