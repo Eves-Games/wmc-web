@@ -14,9 +14,7 @@ export interface ColouredPattern {
 }
 
 function getPatternPosition(patternName: string, colourName: string) {
-  const patternIndex = bannerPatterns.findIndex(
-    (banner) => banner.name == patternName,
-  );
+  const patternIndex = bannerPatterns.findIndex((banner) => banner.name == patternName);
   const colourIndex = colours.findIndex((colour) => colour.name == colourName);
 
   const width = (patternIndex + 1) * 80;
@@ -25,11 +23,7 @@ function getPatternPosition(patternName: string, colourName: string) {
   return `${-width}px ${-height}px`;
 }
 
-export function generateBanner(
-  baseColour: string,
-  primaryPattern: ColouredPattern | null,
-  secondaryPattern: ColouredPattern | null,
-) {
+export function generateBanner(baseColour: string, primaryPattern: ColouredPattern | null, secondaryPattern: ColouredPattern | null) {
   return (
     <div className={`banner banner-shadow bg-${baseColour}`}>
       {primaryPattern && (
@@ -37,10 +31,7 @@ export function generateBanner(
           className="size-full"
           style={{
             backgroundImage: "url(/minecraft/banner-patterns.png)",
-            backgroundPosition: getPatternPosition(
-              primaryPattern.name,
-              primaryPattern.colour
-            ),
+            backgroundPosition: getPatternPosition(primaryPattern.name, primaryPattern.colour),
           }}
         >
           {secondaryPattern && (
@@ -48,10 +39,7 @@ export function generateBanner(
               className="size-full"
               style={{
                 backgroundImage: "url(/minecraft/banner-patterns.png)",
-                backgroundPosition: getPatternPosition(
-                  secondaryPattern.name,
-                  secondaryPattern.colour
-                ),
+                backgroundPosition: getPatternPosition(secondaryPattern.name, secondaryPattern.colour),
               }}
             />
           )}
@@ -62,9 +50,7 @@ export function generateBanner(
 }
 
 export function getSmallPatternPosition(patternName: string) {
-  const patternIndex = bannerPatterns.findIndex(
-    (banner) => banner.name == patternName,
-  );
+  const patternIndex = bannerPatterns.findIndex((banner) => banner.name == patternName);
 
   const height = (patternIndex + 1) * 15;
   return `${-height}px -450px`;
@@ -73,67 +59,67 @@ export function getSmallPatternPosition(patternName: string) {
 export const colours = [
   {
     name: "white-dye",
-    imageSrc: "/minecraft/items/white_dye.webp",
+    imageSrc: "/minecraft/item/white_dye.png",
   },
   {
     name: "orange-dye",
-    imageSrc: "/minecraft/items/orange_dye.webp",
+    imageSrc: "/minecraft/item/orange_dye.png",
   },
   {
     name: "magenta-dye",
-    imageSrc: "/minecraft/items/magenta_dye.webp",
+    imageSrc: "/minecraft/item/magenta_dye.png",
   },
   {
     name: "light-blue-dye",
-    imageSrc: "/minecraft/items/light_blue_dye.webp",
+    imageSrc: "/minecraft/item/light_blue_dye.png",
   },
   {
     name: "yellow-dye",
-    imageSrc: "/minecraft/items/yellow_dye.webp",
+    imageSrc: "/minecraft/item/yellow_dye.png",
   },
   {
     name: "lime-dye",
-    imageSrc: "/minecraft/items/lime_dye.webp",
+    imageSrc: "/minecraft/item/lime_dye.png",
   },
   {
     name: "pink-dye",
-    imageSrc: "/minecraft/items/pink_dye.webp",
+    imageSrc: "/minecraft/item/pink_dye.png",
   },
   {
     name: "gray-dye",
-    imageSrc: "/minecraft/items/gray_dye.webp",
+    imageSrc: "/minecraft/item/gray_dye.png",
   },
   {
     name: "light-gray-dye",
-    imageSrc: "/minecraft/items/light_gray_dye.webp",
+    imageSrc: "/minecraft/item/light_gray_dye.png",
   },
   {
     name: "cyan-dye",
-    imageSrc: "/minecraft/items/cyan_dye.webp",
+    imageSrc: "/minecraft/item/cyan_dye.png",
   },
   {
     name: "purple-dye",
-    imageSrc: "/minecraft/items/purple_dye.webp",
+    imageSrc: "/minecraft/item/purple_dye.png",
   },
   {
     name: "blue-dye",
-    imageSrc: "/minecraft/items/blue_dye.webp",
+    imageSrc: "/minecraft/item/blue_dye.png",
   },
   {
     name: "brown-dye",
-    imageSrc: "/minecraft/items/brown_dye.webp",
+    imageSrc: "/minecraft/item/brown_dye.png",
   },
   {
     name: "green-dye",
-    imageSrc: "/minecraft/items/green_dye.webp",
+    imageSrc: "/minecraft/item/green_dye.png",
   },
   {
     name: "red-dye",
-    imageSrc: "/minecraft/items/red_dye.webp",
+    imageSrc: "/minecraft/item/red_dye.png",
   },
   {
     name: "black-dye",
-    imageSrc: "/minecraft/items/black_dye.webp",
+    imageSrc: "/minecraft/item/black_dye.png",
   },
 ] satisfies BaseColour[];
 
@@ -144,23 +130,19 @@ export const bannerPatterns = [
   },
   {
     name: "Base Dexter Canton",
-    imageSrc:
-      "/minecraft/banner-patterns/base_dexter_canton_banner_pattern.webp",
+    imageSrc: "/minecraft/banner-patterns/base_dexter_canton_banner_pattern.webp",
   },
   {
     name: "Base Sinister Canton",
-    imageSrc:
-      "/minecraft/banner-patterns/base_sinister_canton_banner_pattern.webp",
+    imageSrc: "/minecraft/banner-patterns/base_sinister_canton_banner_pattern.webp",
   },
   {
     name: "Chief Dexter Canton",
-    imageSrc:
-      "/minecraft/banner-patterns/chief_dexter_canton_banner_pattern.webp",
+    imageSrc: "/minecraft/banner-patterns/chief_dexter_canton_banner_pattern.webp",
   },
   {
     name: "Chief Sinister Canton",
-    imageSrc:
-      "/minecraft/banner-patterns/chief_sinister_canton_banner_pattern.webp",
+    imageSrc: "/minecraft/banner-patterns/chief_sinister_canton_banner_pattern.webp",
   },
   {
     name: "Per Fess",
@@ -212,8 +194,7 @@ export const bannerPatterns = [
   },
   {
     name: "Per Bend Sinister",
-    imageSrc:
-      "/minecraft/banner-patterns/per_bend_sinister_banner_pattern.webp",
+    imageSrc: "/minecraft/banner-patterns/per_bend_sinister_banner_pattern.webp",
   },
   {
     name: "Per Bend",
@@ -277,13 +258,11 @@ export const bannerPatterns = [
   },
   {
     name: "Per Bend Inverted",
-    imageSrc:
-      "/minecraft/banner-patterns/per_bend_inverted_banner_pattern.webp",
+    imageSrc: "/minecraft/banner-patterns/per_bend_inverted_banner_pattern.webp",
   },
   {
     name: "Per Bend Sinister Inverted",
-    imageSrc:
-      "/minecraft/banner-patterns/per_bend_sinister_inverted_banner_pattern.webp",
+    imageSrc: "/minecraft/banner-patterns/per_bend_sinister_inverted_banner_pattern.webp",
   },
   {
     name: "Base Gradient",
@@ -291,13 +270,11 @@ export const bannerPatterns = [
   },
   {
     name: "Per Fess Inverted",
-    imageSrc:
-      "/minecraft/banner-patterns/per_fess_inverted_banner_pattern.webp",
+    imageSrc: "/minecraft/banner-patterns/per_fess_inverted_banner_pattern.webp",
   },
   {
     name: "Per Pale Inverted",
-    imageSrc:
-      "/minecraft/banner-patterns/per_pale_inverted_banner_pattern.webp",
+    imageSrc: "/minecraft/banner-patterns/per_pale_inverted_banner_pattern.webp",
   },
   {
     name: "Globe",
