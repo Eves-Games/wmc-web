@@ -104,8 +104,6 @@ interface Nation extends PartialNation {
     y: number;
     z: number;
   };
-  allies: PartialNation[];
-  enemies: PartialNation[];
 }
 
 // Invite definitions

@@ -1,18 +1,26 @@
-"use server"
+"use server";
 
 import { getEnvironment } from "./environment";
-import type { PartialResident, PartialTown, Resident, Town, PartialNation, Nation, PaginatedResult } from "@/types/bridge"
+import type {
+  PartialResident,
+  PartialTown,
+  Resident,
+  Town,
+  PartialNation,
+  Nation,
+  PaginatedResult,
+  NationAllyNationInvite,
+} from "@/types/bridge";
 
-const API_BASE_URL = getEnvironment() === 'development' 
-  ? 'https://towny.worldmc.net/dev' 
-  : 'https://towny.worldmc.net';
+const API_BASE_URL = getEnvironment() === "development" ? "https://towny.worldmc.net/dev" : "https://towny.worldmc.net";
 
 async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const url = `${API_BASE_URL}${endpoint}`;
-  const headers = new Headers(options.headers);
-  headers.set('apiKey', process.env.BRIDGE_KEY!);
+  //const headers = new Headers(options.headers);
+  //headers.set("apiKey", process.env.BRIDGE_KEY!);
 
-  const response = await fetch(url, { ...options, headers });
+  //const response = await fetch(url, { ...options, headers });
+  const response = await fetch(url, { ...options });
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
@@ -24,16 +32,32 @@ async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promi
 
 // Nations
 export async function getNations(page: number = 1, search?: string): Promise<PaginatedResult<PartialNation>> {
-  const searchParam = search ? `&search=${encodeURIComponent(search)}` : '';
+  const searchParam = search ? `&search=${encodeURIComponent(search)}` : "";
   return apiRequest<PaginatedResult<PartialNation>>(`/nations?page=${page}${searchParam}`);
 }
 
 export async function getNation(UUID: string): Promise<Nation> {
-  return apiRequest<Nation>(`/nation/${UUID}`);
+  return apiRequest<Nation>(`/nations/${UUID}`);
 }
 
 export async function getNationTowns(UUID: string, page: number = 1): Promise<PaginatedResult<PartialTown>> {
-  return apiRequest<PaginatedResult<PartialTown>>(`/nation/${UUID}/towns?page=${page}`);
+  return apiRequest<PaginatedResult<PartialTown>>(`/nations/${UUID}/towns?page=${page}`);
+}
+
+export async function getNationRelationships(
+  UUID: string,
+  relationshipType: string,
+  page: number = 1,
+): Promise<PaginatedResult<PartialNation>> {
+  return apiRequest<PaginatedResult<PartialNation>>(`/nations/${UUID}/relationships/${relationshipType}?page=${page}`);
+}
+
+export async function getNationRelationshipRequests(
+  UUID: string,
+  relationshipType: string,
+  page: number = 1,
+): Promise<PaginatedResult<NationAllyNationInvite>> {
+  return apiRequest<PaginatedResult<NationAllyNationInvite>>(`/nations/${UUID}/relationships/${relationshipType}/requests?page=${page}`);
 }
 
 // Towns
