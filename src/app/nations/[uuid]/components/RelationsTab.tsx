@@ -60,12 +60,12 @@ interface RelationsTabProps {
   enemies: PartialNation[];
 }
 
-export default function RelationsTab({ allies, enemies }: RelationsTabProps) {
+export default function RelationsTab() {
   return (
     <div className="space-y-6">
-      <AffiliatesList title="Allies" affiliates={allies} />
+      Allies N/A
       <hr />
-      <AffiliatesList title="Enemies" affiliates={enemies} />
+      Enemies N/A
     </div>
   );
 }

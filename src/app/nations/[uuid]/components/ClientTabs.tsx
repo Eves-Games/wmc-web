@@ -30,7 +30,7 @@ export function ClientTabs({ nation, towns }: ClientTabsProps) {
       </div>
       {activeTab === "about" && <AboutTab nation={nation} towns={towns} />}
       {activeTab === "economy" && <EconomyTab nation={nation} />}
-      {activeTab === "relations" && <RelationsTab allies={nation.allies} enemies={nation.enemies} />}
+      {activeTab === "relations" && <RelationsTab />}
     </>
   );
 }
