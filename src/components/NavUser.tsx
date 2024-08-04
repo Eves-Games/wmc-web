@@ -17,21 +17,23 @@ export async function NavUser({ uuid, username }: NavUserProps) {
       href: `/residents/${resident.UUID}`,
       icon: <User className="size-5" />,
     },
-    ...(resident.town ? [
-      {
-        name: "Town",
-        href: `/towns/${resident.town.UUID}`,
-        icon: <Building2 className="size-5" />,
-      },
-    ] : []),
+    ...(resident.town
+      ? [
+          {
+            name: "Town",
+            href: `/towns/${resident.town.UUID}`,
+            icon: <Building2 className="size-5" />,
+          },
+        ]
+      : []),
     ...(resident.nation
       ? [
-        {
-          name: "Nation",
-          href: `/nations/${resident.nation.UUID}`,
-          icon: <Flag className="size-5" />,
-        },
-      ]
+          {
+            name: "Nation",
+            href: `/nations/${resident.nation.UUID}`,
+            icon: <Flag className="size-5" />,
+          },
+        ]
       : []),
   ];
 
@@ -47,10 +49,7 @@ export async function NavUser({ uuid, username }: NavUserProps) {
           className="size-5"
         />
       </button>
-      <ul
-        tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow-lg"
-      >
+      <ul tabIndex={0} className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow-lg">
         <li>
           <details>
             <summary>

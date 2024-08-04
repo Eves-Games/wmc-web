@@ -3,15 +3,9 @@ import Image from "next/image";
 
 export async function Footer() {
   return (
-    <footer className="footer p-10 bg-base-100 rounded-box shadow-lg">
+    <footer className="footer rounded-box bg-base-100 p-10 shadow">
       <aside>
-      <Image
-            src={'/worldmc.png'}
-            alt="WorldMC Icon"
-            className="size-12"
-            width={100}
-            height={100}
-          />
+        <Image src={"/worldmc.png"} alt="WorldMC Icon" className="size-12" width={100} height={100} />
         <p>
           Eve&apos;s Games SP.
           <br />
