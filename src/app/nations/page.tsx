@@ -3,8 +3,8 @@ import { getAuthenticatedUser } from "@/auth";
 import { getNations, getResident } from "@/bridge";
 import { Flag, LoaderCircle } from "lucide-react";
 import Link from "next/link";
-import { SearchForm } from "./components/SearchForm";
-import { PaginationControls } from "./components/PaginationControls";
+import { SearchForm } from "../../components/SearchForm";
+import { PaginationControls } from "../../components/PaginationControls";
 
 export const revalidate = 900;
 
@@ -45,7 +45,7 @@ async function NationsList({ page, searchTerm }: { page: number; searchTerm: str
           </Link>
         ))}
       </div>
-      <PaginationControls currentPage={page} totalPages={nations.totalPages} searchTerm={searchTerm} />
+      <PaginationControls currentPage={page} totalPages={nations.totalPages} searchTerm={searchTerm} entityType="nations" />
     </>
   );
 }
@@ -59,7 +59,7 @@ export default async function Page({ searchParams }: { searchParams: { page?: st
     <section className="space-y-4 text-center">
       <h1 className="text-5xl font-black">Nations</h1>
       <div className="flex justify-center gap-2">
-        <SearchForm initialSearchTerm={searchTerm} />
+        <SearchForm initialSearchTerm={searchTerm} entityType="nations" />
         {userNationUUID && (
           <Link href={`/nations/${userNationUUID}`} className="btn btn-outline">
             <Flag /> My Nation

@@ -1,10 +1,16 @@
 "use client";
 
-import React, { useState, useTransition } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { Search, Loader } from "lucide-react";
 
-export function SearchForm({ initialSearchTerm }: { initialSearchTerm: string }) {
+export function SearchForm({
+  initialSearchTerm,
+  entityType,
+}: {
+  initialSearchTerm: string;
+  entityType: "residents" | "towns" | "nations";
+}) {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
   const [isPending, startTransition] = useTransition();
@@ -17,7 +23,7 @@ export function SearchForm({ initialSearchTerm }: { initialSearchTerm: string })
   const performSearch = () => {
     if (searchTerm.trim()) {
       startTransition(() => {
-        router.push(`/nations?page=1&search=${encodeURIComponent(searchTerm.trim())}`);
+        router.push(`/${entityType}?page=1&search=${encodeURIComponent(searchTerm.trim())}`);
       });
     }
   };
@@ -36,16 +42,12 @@ export function SearchForm({ initialSearchTerm }: { initialSearchTerm: string })
           placeholder="Search"
           value={searchTerm}
           onChange={handleInputChange}
-          aria-label="Search nations"
+          aria-label="Search"
         />
         {isPending ? (
-          <Loader className="size-4 opacity-70 animate-spin" />
+          <Loader className="size-4 animate-spin opacity-70" />
         ) : (
-          <Search 
-            className="size-4 opacity-70 cursor-pointer" 
-            onClick={performSearch}
-            aria-label="Submit search"
-          />
+          <Search className="size-4 cursor-pointer opacity-70" onClick={performSearch} aria-label="Submit search" />
         )}
       </label>
     </form>
