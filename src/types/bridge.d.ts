@@ -64,7 +64,7 @@ interface Town extends PartialTown {
   };
   mayor: PartialResident;
   nation?: PartialNation;
-  residents: number;
+  numResidents: number;
   trustedResidents: number;
   spawn: {
     x: number;
@@ -72,6 +72,7 @@ interface Town extends PartialTown {
     z: number;
   };
   plotGroups: string[];
+  residents: PartialResident[];
 }
 
 // Nation definitions
@@ -104,22 +105,9 @@ interface Nation extends PartialNation {
     y: number;
     z: number;
   };
-}
-
-// Invite definitions
-interface NationAllyNationInvite {
-  sender: PartialNation;
-  receiver: PartialNation;
-}
-
-interface PlayerJoinTownInvite {
-  sender: PartialTown;
-  receiver: PartialResident;
-}
-
-interface TownJoinNationInvite {
-  sender: PartialNation;
-  receiver: PartialTown;
+  towns: PartialTown[];
+  allies: PartialNation[];
+  enemies: PartialNation[];
 }
 
 // Paginated
@@ -129,15 +117,4 @@ interface PaginatedResult<T> {
   totalPages: number;
 }
 
-export type {
-  PartialResident,
-  Resident,
-  PartialTown,
-  Town,
-  PartialNation,
-  Nation,
-  NationAllyNationInvite,
-  PlayerJoinTownInvite,
-  TownJoinNationInvite,
-  PaginatedResult,
-};
+export type { PartialResident, Resident, PartialTown, Town, PartialNation, Nation, PaginatedResult };
