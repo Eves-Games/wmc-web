@@ -1,8 +1,6 @@
-import { getAuthenticatedUser } from "@/auth";
 import Image from "next/image";
 import Link from "next/link";
-import { NavUser } from "./NavUser";
-import { Menu } from "lucide-react";
+import { Menu, Palette } from "lucide-react";
 
 interface MenuLink {
   name: string;
@@ -47,8 +45,6 @@ const menuLinks = [
 ] satisfies MenuLink[];
 
 export default async function Nav() {
-  const user = getAuthenticatedUser();
-
   return (
     <div className="navbar rounded-box bg-base-100 shadow">
       <div className="flex-1 lg:flex-none">
@@ -117,14 +113,9 @@ export default async function Nav() {
         </ul>
       </div>
       <div className="flex-none">
-        {user ? (
-          <NavUser {...user} />
-        ) : (
-          <label htmlFor="sign_in_modal" className="btn">
-            Sign in
-            <Image src={"/minecraft.svg"} alt="Minecraft Icon" height={20} width={20} className="size-5" />
-          </label>
-        )}
+        <button className="btn btn-outline">
+          <Palette />
+        </button>
       </div>
     </div>
   );
