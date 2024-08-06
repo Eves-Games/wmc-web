@@ -1,28 +1,15 @@
 import React, { Suspense } from "react";
-import { getAuthenticatedUser } from "@/auth";
-import { getNations, getResident } from "@/bridge";
-import { Flag, LoaderCircle } from "lucide-react";
+import { getNations } from "@/bridge";
+import { LoaderCircle } from "lucide-react";
 import Link from "next/link";
-import { SearchForm } from "../../components/SearchForm";
-import { PaginationControls } from "../../components/PaginationControls";
+import { SearchForm } from "@/components/SearchForm";
+import { PaginationControls } from "@/components/PaginationControls";
 
 export const revalidate = 900;
 
 async function fetchNationsData(page: number, searchTerm: string = "") {
   "use server";
   return await getNations(page, searchTerm);
-}
-
-async function fetchUserData() {
-  "use server";
-  const user = getAuthenticatedUser();
-  if (user) {
-    const resident = await getResident(user.uuid);
-    if (resident && resident.town && resident.nation) {
-      return resident.nation.UUID;
-    }
-  }
-  return null;
 }
 
 function LoadingSpinner() {
@@ -53,19 +40,11 @@ async function NationsList({ page, searchTerm }: { page: number; searchTerm: str
 export default async function Page({ searchParams }: { searchParams: { page?: string; search?: string } }) {
   const page = parseInt(searchParams.page || "1", 10);
   const searchTerm = searchParams.search || "";
-  const userNationUUID = await fetchUserData();
 
   return (
     <section className="space-y-4 text-center">
       <h1 className="text-5xl font-black">Nations</h1>
-      <div className="flex justify-center gap-2">
-        <SearchForm initialSearchTerm={searchTerm} entityType="nations" />
-        {userNationUUID && (
-          <Link href={`/nations/${userNationUUID}`} className="btn btn-outline">
-            <Flag /> My Nation
-          </Link>
-        )}
-      </div>
+      <SearchForm initialSearchTerm={searchTerm} entityType="nations" />
       <Suspense fallback={<LoadingSpinner />}>
         <NationsList page={page} searchTerm={searchTerm} />
       </Suspense>
