@@ -4,6 +4,8 @@ import { Crown, Shield, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+export const revalidate = 900;
+
 export default async function Page({ params }: { params: { uuid: string } }) {
   const resident = await getResident(params.uuid);
 
