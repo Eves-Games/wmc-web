@@ -28,8 +28,9 @@ export async function getNation(UUID: string): Promise<Nation> {
 }
 
 // Towns
-export async function getTowns(page: number = 1): Promise<PaginatedResult<PartialTown>> {
-  return apiRequest<PaginatedResult<PartialTown>>(`/towns?page=${page}`);
+export async function getTowns(page: number = 1, search?: string): Promise<PaginatedResult<PartialTown>> {
+  const searchParam = search ? `&search=${encodeURIComponent(search)}` : "";
+  return apiRequest<PaginatedResult<PartialTown>>(`/towns?page=${page}${searchParam}`);
 }
 
 export async function getTown(UUID: string): Promise<Town> {
@@ -37,8 +38,9 @@ export async function getTown(UUID: string): Promise<Town> {
 }
 
 // Residents
-export async function getResidents(page: number = 1): Promise<PaginatedResult<PartialResident>> {
-  return apiRequest<PaginatedResult<PartialResident>>(`/residents?page=${page}`);
+export async function getResidents(page: number = 1, search?: string): Promise<PaginatedResult<PartialResident>> {
+  const searchParam = search ? `&search=${encodeURIComponent(search)}` : "";
+  return apiRequest<PaginatedResult<PartialResident>>(`/residents?page=${page}${searchParam}`);
 }
 
 export async function getResident(UUID: string): Promise<Resident> {
