@@ -82,7 +82,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
       <hr />
       <h2 className="text-xl font-black">Residence</h2>
       <div className="flex gap-4">
-        {!(resident.town && resident.nation) && "This player does not have any residence."}
+        {!resident.town && "This player does not have any residence."}
         {resident.town && (
           <Link
             href={`/towns/${resident.town.UUID}`}
