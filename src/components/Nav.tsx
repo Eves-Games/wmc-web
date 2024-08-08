@@ -1,12 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, Palette } from "lucide-react";
+import { Menu, Search, Store, Vote } from "lucide-react";
+import DiscordLogo from "@/components/DiscordLogo";
+import { ReactNode } from "react";
 
 interface MenuLink {
   name: string;
-  href: string | null;
-  target: string | null;
-  subMenu?: MenuLink[];
+  href: string;
+  target: string;
+  icon: ReactNode;
 }
 
 const menuLinks = [
@@ -14,69 +16,47 @@ const menuLinks = [
     name: "Discord",
     href: "https://discord.gg/g4stgqxahv",
     target: "_blank",
+    icon: <DiscordLogo className="size-6 md:hidden" />,
   },
   {
     name: "Explore",
-    href: null,
-    target: null,
-    subMenu: [
-      {
-        name: "Residents",
-        href: "/residents",
-        target: "",
-      },
-      {
-        name: "Towns",
-        href: "/towns",
-        target: "",
-      },
-      {
-        name: "Nations",
-        href: "/nations",
-        target: "",
-      },
-    ],
+    href: "/explore",
+    target: "",
+    icon: <Search className="md:hidden" />,
+  },
+  {
+    name: "Vote",
+    href: "/vote",
+    target: "",
+    icon: <Vote className="md:hidden" />,
   },
   {
     name: "Store",
     href: "https://worldmc-710.tebex.io/",
     target: "_blank",
+    icon: <Store className="md:hidden" />,
   },
 ] satisfies MenuLink[];
 
-export default async function Nav() {
+const navLinks = menuLinks.map((menuLink) => (
+  <li key={menuLink.name}>
+    <Link className="flex justify-between" href={menuLink.href} target={menuLink.target}>
+      {menuLink.name}
+      {menuLink.icon}
+    </Link>
+  </li>
+));
+
+export default function Nav() {
   return (
     <div className="navbar rounded-box bg-base-100 shadow">
-      <div className="flex-1 lg:flex-none">
+      <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
             <Menu className="size-5" />
           </div>
-          <ul tabIndex={0} className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow-lg">
-            {menuLinks.map((menuLink) =>
-              menuLink.subMenu ? (
-                <li key={menuLink.name}>
-                  <details>
-                    <summary>{menuLink.name}</summary>
-                    <ul>
-                      {menuLink.subMenu.map((subMenuLink) => (
-                        <li key={subMenuLink.name}>
-                          <Link href={subMenuLink.href} target={subMenuLink.target}>
-                            {subMenuLink.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </details>
-                </li>
-              ) : (
-                <li key={menuLink.name}>
-                  <Link href={menuLink.href} target={menuLink.target}>
-                    {menuLink.name}
-                  </Link>
-                </li>
-              ),
-            )}
+          <ul tabIndex={0} className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow">
+            {navLinks}
           </ul>
         </div>
         <Link className="btn btn-ghost text-xl" href="/">
@@ -84,38 +64,8 @@ export default async function Nav() {
           WorldMC
         </Link>
       </div>
-      <div className="hidden flex-1 lg:flex">
-        <ul className="menu menu-horizontal p-0">
-          {menuLinks.map((menuLink) =>
-            menuLink.subMenu ? (
-              <li key={menuLink.name}>
-                <details>
-                  <summary>{menuLink.name}</summary>
-                  <ul className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow-lg">
-                    {menuLink.subMenu.map((subMenuLink) => (
-                      <li key={subMenuLink.name}>
-                        <Link href={subMenuLink.href} target={subMenuLink.target}>
-                          {subMenuLink.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </details>
-              </li>
-            ) : (
-              <li key={menuLink.name}>
-                <Link href={menuLink.href} target={menuLink.target}>
-                  {menuLink.name}
-                </Link>
-              </li>
-            ),
-          )}
-        </ul>
-      </div>
-      <div className="flex-none">
-        <button className="btn btn-outline">
-          <Palette />
-        </button>
+      <div className="navbar-end hidden md:flex">
+        <ul className="menu menu-horizontal p-0">{navLinks}</ul>
       </div>
     </div>
   );
