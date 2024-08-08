@@ -3,8 +3,9 @@ import { formatDateTime } from "@/format";
 import { Bot, Building2, Crown, Flag, Lock, Shield, Star, Wallet } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import MinecraftItem from "@/components/minecraft/MinecraftItem";
+
+export const revalidate = 60;
 
 export default async function Page({ params }: { params: { uuid: string } }) {
   let resident = await getResident(params.uuid);
