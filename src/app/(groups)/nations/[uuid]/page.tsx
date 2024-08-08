@@ -2,7 +2,7 @@ import React from "react";
 import { getNation, getResident } from "@/bridge";
 import { Wallet, Users, BarChart2, DollarSign, AlertTriangle, TrendingUp, Percent, Ellipsis, Pencil, LogOut } from "lucide-react";
 import MinecraftItem from "@/components/minecraft/MinecraftItem";
-import { generateBanner } from "@/banners";
+import { Banner } from "@/banners";
 import Link from "next/link";
 import clsx from "clsx";
 import { formatDateTime } from "@/format";
@@ -18,15 +18,8 @@ export default async function Page({ params }: { params: { uuid: string } }) {
   return (
     <section className="space-y-4">
       <div className="relative flex gap-4 rounded-box bg-gradient-to-r from-base-200 to-violet-200 p-4 shadow">
-        <figure className="drop-shadow-lg">
-          {generateBanner(
-            "white-dye",
-            {
-              name: "Creeper Charge",
-              colour: "red-dye",
-            },
-            null,
-          )}
+        <figure className="drop-shadow">
+          <Banner baseColour="white-dye" primaryPattern={{ name: "Creeper Charge", colour: "red-dye" }} secondaryPattern={null} />
         </figure>
         <div className="flex w-full flex-col justify-between">
           <div>
@@ -58,14 +51,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
           {nation.towns.map((town) => (
             <div className="flex flex-col items-center" key={town.UUID}>
               <div className="p-2">
-                {generateBanner(
-                  "white-dye",
-                  {
-                    name: "Snout",
-                    colour: "blue-dye",
-                  },
-                  null,
-                )}
+                <Banner baseColour="white-dye" primaryPattern={{ name: "Snout", colour: "blue-dye" }} secondaryPattern={null} />
               </div>
               <Link href={`/towns/${town.UUID}`} className="btn btn-sm w-full shadow">
                 <p className="truncate">{town.name}</p>

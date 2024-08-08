@@ -23,7 +23,13 @@ function getPatternPosition(patternName: string, colourName: string) {
   return `${-width}px ${-height}px`;
 }
 
-export function generateBanner(baseColour: string, primaryPattern: ColouredPattern | null, secondaryPattern: ColouredPattern | null) {
+interface BannerProps {
+  baseColour: string;
+  primaryPattern: ColouredPattern | null;
+  secondaryPattern: ColouredPattern | null;
+}
+
+export function Banner({ baseColour, primaryPattern, secondaryPattern }: BannerProps) {
   return (
     <div className={`banner banner-shadow bg-${baseColour}`}>
       {primaryPattern && (

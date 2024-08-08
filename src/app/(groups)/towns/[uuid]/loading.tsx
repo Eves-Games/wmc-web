@@ -1,10 +1,12 @@
-import { generateBanner } from "@/banners";
+import { Banner } from "@/banners";
 
 export default async function Loading() {
   return (
     <section className="space-y-4">
       <div className="relative flex gap-4 rounded-box bg-base-200 p-4 shadow">
-        <figure className="drop-shadow-lg">{generateBanner("white-dye", null, null)}</figure>
+        <figure className="drop-shadow-lg">
+          <Banner baseColour="white-dye" primaryPattern={null} secondaryPattern={null} />
+        </figure>
         <div className="flex w-full flex-col justify-between">
           <div className="skeleton h-full w-1/2" />
 

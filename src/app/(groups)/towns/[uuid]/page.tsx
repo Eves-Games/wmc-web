@@ -1,5 +1,5 @@
 import { getTown } from "@/bridge";
-import { generateBanner } from "@/banners";
+import { Banner } from "@/banners";
 import { formatDateTime } from "@/format";
 import clsx from "clsx";
 import Image from "next/image";
@@ -12,8 +12,10 @@ export default async function Page({ params }: { params: { uuid: string } }) {
 
   return (
     <section className="space-y-4">
-      <div className="relative flex gap-4 rounded-box bg-gradient-to-r from-base-200 to-blue-200 p-4 shadow-lg">
-        <figure className="drop-shadow-lg">{generateBanner("white-dye", { name: "Creeper Charge", colour: "red-dye" }, null)}</figure>
+      <div className="relative flex gap-4 rounded-box bg-gradient-to-r from-base-200 to-blue-200 p-4 shadow">
+        <figure className="drop-shadow">
+          <Banner baseColour="white-dye" primaryPattern={{ name: "Creeper Charge", colour: "red-dye" }} secondaryPattern={null} />
+        </figure>
         <div className="flex w-full flex-col justify-between">
           <div>
             <h1 className="text-xl font-black">{town.name}</h1>
