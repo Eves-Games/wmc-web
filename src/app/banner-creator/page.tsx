@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { colours, bannerPatterns, getSmallPatternPosition, generateBanner, ColouredPattern } from "@/banners";
+import { colours, bannerPatterns, getSmallPatternPosition, ColouredPattern, Banner } from "@/banners";
 import { useCallback, useState } from "react";
 import clsx from "clsx";
 import MinecraftItem from "@/components/minecraft/MinecraftItem";
@@ -56,7 +56,7 @@ export default function Page() {
             Secondary
           </button>
         </div>
-        {generateBanner(baseColour, primary, secondary)}
+        <Banner baseColour={baseColour} primaryPattern={primary} secondaryPattern={secondary} />
         <ColourButtons
           handleColourChange={
             activeTab === "base"
