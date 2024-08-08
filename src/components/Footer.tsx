@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export async function Footer() {
+export function Footer() {
   return (
     <footer className="footer rounded-box bg-base-100 p-10 shadow">
       <aside>
