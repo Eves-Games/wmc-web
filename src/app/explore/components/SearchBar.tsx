@@ -21,6 +21,8 @@ export function SearchBar({ placeholder }: { placeholder: string }): JSX.Element
       params.delete(key);
     }
 
+    params.set("page", "1");
+
     replace(`${pathname}?${params.toString()}`);
   }, 300);
 
