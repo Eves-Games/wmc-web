@@ -21,7 +21,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
         </figure>
         <div className="flex w-full flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2">
                 <h1 className="text-xl font-black">{resident.name}</h1>
                 <span
@@ -82,7 +82,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
       <p>{resident.about}</p>
       <hr />
       <h2 className="text-xl font-black">Residence</h2>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
         {!resident.town && "This player does not have any residence."}
         {resident.town && (
           <Link
