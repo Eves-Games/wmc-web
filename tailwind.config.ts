@@ -1,11 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}", "./src/components/**/*.{js,ts,jsx,tsx,mdx}", "./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
   daisyui: {
     themes: ["emerald"],
   },
@@ -31,9 +27,11 @@ const config: Config = {
       },
     },
   },
-  safelist: [{
-    pattern: /(bg)-(white|light-gray|cyan|orange|purple|magenta|blue|light-blue|brown|yellow|green|lime|red|pink|black|gray)-dye/
-  }],
+  safelist: [
+    {
+      pattern: /(bg)-(white|light-gray|cyan|orange|purple|magenta|blue|light-blue|brown|yellow|green|lime|red|pink|black|gray)-dye/,
+    },
+  ],
   plugins: [require("daisyui")],
 };
 export default config;
