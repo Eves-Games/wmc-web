@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
 
   return (
     <section className="space-y-4">
-      <div className="relative flex gap-4 rounded-box bg-gradient-to-r from-base-200 to-violet-200 p-4 shadow">
+      <div className="flex gap-4 rounded-box bg-gradient-to-r from-base-200 to-violet-200 p-4 shadow">
         <figure className="drop-shadow">
           <Banner baseColour="white-dye" primaryPattern={{ name: "Creeper Charge", colour: "red-dye" }} secondaryPattern={null} />
         </figure>
