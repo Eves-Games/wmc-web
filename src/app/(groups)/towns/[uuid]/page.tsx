@@ -23,7 +23,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
             <div className="flex items-center justify-between">
               <h1 className="text-xl font-black">{town.name}</h1>
               <div className="badge badge-lg">
-                <MinecraftItem imageSrc="/minecraft/item/gold_ingot.png" className="mr-1" /> {town.bankAccount.toLocaleString()}
+                <MinecraftItem imageSrc="/minecraft/item/gold_ingot.png" className="mr-1 size-4" /> {town.bankAccount.toLocaleString()}
               </div>
             </div>
             <p>
