@@ -47,7 +47,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
       </div>
 
       <h2 className="text-xl font-black">Tax</h2>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-box bg-gradient-to-r from-base-200 to-emerald-200 p-4 shadow">
           <div className="flex items-center justify-between">
             <h3 className="font-bold">Standard Tax</h3>
