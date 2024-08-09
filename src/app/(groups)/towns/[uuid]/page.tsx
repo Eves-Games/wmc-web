@@ -5,7 +5,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import MinecraftItem from "@/components/minecraft/MinecraftItem";
-import { Flag, User } from "lucide-react";
+import { Flag, Shield, User } from "lucide-react";
 
 export const revalidate = 900;
 
@@ -78,25 +78,43 @@ export default async function Page({ params }: { params: { uuid: string } }) {
         <p>This town has no residents.</p>
       ) : (
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
-          {town.residents.map((resident) => (
-            <Link
-              href={`/residents/${resident.UUID}`}
-              className="btn btn-lg btn-block justify-between bg-gradient-to-r from-base-200 to-green-200"
-              key={resident.UUID}
-            >
-              <div className="flex items-center gap-4">
-                <Image
-                  src={`https://crafatar.com/avatars/${resident.UUID}?size=32&default=MHF_Steve&overlay`}
-                  alt={`${resident.name}'s Minecraft Face`}
-                  height={32}
-                  width={32}
-                  className="size-8"
-                />
-                {resident.name}
-              </div>
-              <User />
-            </Link>
-          ))}
+          <Link
+            href={`/residents/${town.mayor.UUID}`}
+            className="btn btn-lg btn-block justify-between bg-gradient-to-r from-base-200 to-green-200"
+          >
+            <div className="flex items-center gap-4">
+              <Image
+                src={`https://crafatar.com/avatars/${town.mayor.UUID}?size=32&default=MHF_Steve&overlay`}
+                alt={`${town.mayor.name}'s Minecraft Face`}
+                height={32}
+                width={32}
+                className="size-8"
+              />
+              {town.mayor.name} (Mayor)
+            </div>
+            <Shield />
+          </Link>
+          {town.residents
+            .filter((resident) => resident.UUID !== town.mayor.UUID)
+            .map((resident) => (
+              <Link
+                href={`/residents/${resident.UUID}`}
+                className="btn btn-lg btn-block justify-between bg-gradient-to-r from-base-200 to-green-200"
+                key={resident.UUID}
+              >
+                <div className="flex items-center gap-4">
+                  <Image
+                    src={`https://crafatar.com/avatars/${resident.UUID}?size=32&default=MHF_Steve&overlay`}
+                    alt={`${resident.name}'s Minecraft Face`}
+                    height={32}
+                    width={32}
+                    className="size-8"
+                  />
+                  {resident.name}
+                </div>
+                <User />
+              </Link>
+            ))}
         </div>
       )}
     </section>
