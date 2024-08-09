@@ -5,7 +5,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import MinecraftItem from "@/components/minecraft/MinecraftItem";
-import { User } from "lucide-react";
+import { Flag, User } from "lucide-react";
 
 export const revalidate = 900;
 
@@ -59,6 +59,19 @@ export default async function Page({ params }: { params: { uuid: string } }) {
       <hr />
       <h2 className="text-xl font-black">Board</h2>
       <p>{town.board}</p>
+      <hr />
+      <h2 className="text-xl font-black">Nation</h2>
+      {town.nation ? (
+        <Link
+          href={`/nations/${town.nation.UUID}`}
+          className="btn btn-lg btn-block justify-between bg-gradient-to-r from-base-200 to-violet-200"
+        >
+          {town.nation.name}
+          <Flag />
+        </Link>
+      ) : (
+        <p>This town has no nation.</p>
+      )}
       <hr />
       <h2 className="text-xl font-black">Residents ({town.residents.length})</h2>
       {town.residents.length == 0 ? (
