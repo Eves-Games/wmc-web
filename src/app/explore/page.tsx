@@ -37,7 +37,7 @@ export default async function Page({ searchParams }: { searchParams: { query?: s
   return (
     <section className="space-y-4 text-center">
       <h1 className="text-5xl font-black">Explore</h1>
-      <SearchBar placeholder="Search earth..." />
+      <SearchBar placeholder="Search Earth..." />
       <div className="space-y-2">
         {townyObjects &&
           townyObjects.data.map((item) => (
