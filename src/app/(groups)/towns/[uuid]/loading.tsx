@@ -10,6 +10,9 @@ export default function Loading() {
       <h2 className="text-xl font-black">Board</h2>
       <div className="skeleton h-6 shadow" />
       <hr />
+      <h2 className="text-xl font-black">Nation</h2>
+      <div className="skeleton h-16 shadow" />
+      <hr />
       <h2 className="text-xl font-black">Residents</h2>
       <div className="skeleton h-16 shadow" />
     </section>
