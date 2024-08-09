@@ -4,6 +4,8 @@ import { formatDateTime } from "@/format";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import MinecraftItem from "@/components/minecraft/MinecraftItem";
+import { User } from "lucide-react";
 
 export const revalidate = 900;
 
@@ -18,10 +20,15 @@ export default async function Page({ params }: { params: { uuid: string } }) {
         </figure>
         <div className="flex w-full flex-col justify-between">
           <div>
-            <h1 className="text-xl font-black">{town.name}</h1>
+            <div className="flex items-center justify-between">
+              <h1 className="text-xl font-black">{town.name}</h1>
+              <div className="badge badge-lg">
+                <MinecraftItem imageSrc="/minecraft/item/gold_ingot.png" className="mr-1" /> {town.bankAccount.toLocaleString()}
+              </div>
+            </div>
             <p>
               By{" "}
-              <Link href={`/residents/${town.mayor.UUID}`} className="link link-secondary">
+              <Link href={`/residents/${town.mayor.UUID}`} className="link-hover link-secondary">
                 {town.mayor.name}
               </Link>
             </p>
@@ -30,11 +37,14 @@ export default async function Page({ params }: { params: { uuid: string } }) {
             </i>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <div className="badge badge-lg bg-indigo-400 text-black">level {town.level}</div>
             <div className="badge badge-info badge-lg">{town.residents.length} residents</div>
-            <div className={clsx("badge badge-lg", town.isPublic ? "badge-primary" : "badge-warning")}>
-              {town.isPublic ? "public" : "invite-only"}
+            <div className={clsx("badge badge-lg", town.isOpen ? "badge-primary" : "badge-warning")}>
+              {town.isOpen ? "open" : "invite-only"}
+            </div>
+            <div className={clsx("badge badge-lg", town.isPublic ? "badge-primary" : "badge-error")}>
+              {town.isPublic ? "public-spawn" : "private-spawn"}
             </div>
           </div>
         </div>
@@ -51,22 +61,31 @@ export default async function Page({ params }: { params: { uuid: string } }) {
       <p>{town.board}</p>
       <hr />
       <h2 className="text-xl font-black">Residents ({town.residents.length})</h2>
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-5 lg:grid-cols-7">
-        {town.residents.map((resident) => (
-          <div className="flex flex-col items-center" key={resident.UUID}>
-            <Image
-              src={`https://crafatar.com/avatars/${resident.UUID}?size=96&default=MHF_Steve&overlay`}
-              alt={`${resident.name}'s Face`}
-              width={96}
-              height={96}
-              className="size-24 p-2"
-            />
-            <Link href={`/residents/${resident.UUID}`} className="btn btn-sm w-full shadow">
-              <p className="truncate">{resident.name}</p>
+      {town.residents.length == 0 ? (
+        <p>This town has no residents.</p>
+      ) : (
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
+          {town.residents.map((resident) => (
+            <Link
+              href={`/residents/${resident.UUID}`}
+              className="btn btn-lg btn-block justify-between bg-gradient-to-r from-base-200 to-green-200"
+              key={resident.UUID}
+            >
+              <div className="flex items-center gap-4">
+                <Image
+                  src={`https://crafatar.com/avatars/${resident.UUID}?size=32&default=MHF_Steve&overlay`}
+                  alt={`${resident.name}'s Minecraft Face`}
+                  height={32}
+                  width={32}
+                  className="size-8"
+                />
+                {resident.name}
+              </div>
+              <User />
             </Link>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }
