@@ -50,7 +50,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
         </div>
       </div>
       <h2 className="text-xl font-black">Settings</h2>
-      <div className="grid auto-cols-max grid-flow-col gap-2">
+      <div className="flex flex-wrap gap-2">
         <div className={clsx("badge badge-lg", town.settings.pvp ? "badge-primary" : "badge-accent")}>pvp</div>
         <div className={clsx("badge badge-lg", town.settings.fire ? "badge-primary" : "badge-accent")}>fire spread</div>
         <div className={clsx("badge badge-lg", town.settings.mobs ? "badge-primary" : "badge-accent")}>hostile mobs</div>
