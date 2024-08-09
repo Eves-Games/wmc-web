@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { colours, bannerPatterns, getSmallPatternPosition, ColouredPattern, Banner } from "@/banners";
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import clsx from "clsx";
 import MinecraftItem from "@/components/minecraft/MinecraftItem";
 

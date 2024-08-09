@@ -1,4 +1,4 @@
-import CopyIp from "@/components/CopyIp";
+import CopyIp from "@/app/(landing)/components/CopyIp";
 
 export default function Home() {
   return (
