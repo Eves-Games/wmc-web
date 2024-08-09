@@ -9,7 +9,7 @@ import { formatDateTime } from "@/format";
 export const revalidate = 900;
 
 export default async function Page({ params }: { params: { uuid: string } }) {
-  let nation = await getNation(params.uuid);
+  const nation = await getNation(params.uuid);
 
   return (
     <section className="space-y-4">
@@ -19,7 +19,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
         </figure>
         <div className="flex w-full flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between gap-2">
+            <div className="flex justify-between gap-2">
               <h1 className="text-xl font-black">{nation.name}</h1>
               <div className="badge badge-lg">
                 <MinecraftItem imageSrc="/minecraft/item/gold_ingot.png" className="mr-1 size-4" /> {nation.bankAccount.toLocaleString()}

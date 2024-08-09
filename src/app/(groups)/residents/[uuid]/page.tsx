@@ -21,7 +21,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
         </figure>
         <div className="flex w-full flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between gap-2">
+            <div className="flex justify-between gap-2">
               <div className="flex items-center gap-2">
                 <h1 className="text-xl font-black">{resident.name}</h1>
                 <span
