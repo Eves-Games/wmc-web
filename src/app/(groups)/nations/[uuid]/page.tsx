@@ -1,5 +1,5 @@
 import { getNation } from "@/bridge";
-import { Building2, Landmark } from "lucide-react";
+import { Building2, Flag, Landmark } from "lucide-react";
 import MinecraftItem from "@/components/minecraft/MinecraftItem";
 import { Banner } from "@/banners";
 import Link from "next/link";
@@ -116,6 +116,42 @@ export default async function Page({ params }: { params: { uuid: string } }) {
                 <Building2 />
               </Link>
             ))}
+        </div>
+      )}
+      <hr />
+      <h2 className="text-xl font-black">Allies</h2>
+      {nation.allies.length === 0 ? (
+        <p>This nation has no allies.</p>
+      ) : (
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
+          {nation.allies.map((nation) => (
+            <Link
+              href={`/nations/${nation.UUID}`}
+              className="btn btn-lg btn-block justify-between bg-gradient-to-r from-green-200 to-violet-200"
+              key={nation.UUID}
+            >
+              {nation.name}
+              <Flag />
+            </Link>
+          ))}
+        </div>
+      )}
+      <hr />
+      <h2 className="text-xl font-black">Enemies</h2>
+      {nation.enemies.length === 0 ? (
+        <p>This nation has no enemies.</p>
+      ) : (
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
+          {nation.enemies.map((nation) => (
+            <Link
+              href={`/nations/${nation.UUID}`}
+              className="btn btn-lg btn-block justify-between bg-gradient-to-r from-red-200 to-violet-200"
+              key={nation.UUID}
+            >
+              {nation.name}
+              <Flag />
+            </Link>
+          ))}
         </div>
       )}
     </section>

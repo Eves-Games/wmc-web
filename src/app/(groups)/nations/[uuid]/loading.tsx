@@ -15,6 +15,12 @@ export default function Loading() {
       <hr />
       <h2 className="text-xl font-black">Towns</h2>
       <div className="skeleton h-16 shadow" />
+      <hr />
+      <h2 className="text-xl font-black">Allies</h2>
+      <div className="skeleton h-16 shadow" />
+      <hr />
+      <h2 className="text-xl font-black">Enemies</h2>
+      <div className="skeleton h-16 shadow" />
     </section>
   );
 }
