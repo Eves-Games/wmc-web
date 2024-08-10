@@ -33,7 +33,7 @@ const menuLinks = [
   {
     name: "Map",
     href: "https://map.worldmc.net",
-    target: "",
+    target: "_blank",
     icon: <Map className="md:hidden" />,
   },
   {
