@@ -16,31 +16,31 @@ const menuLinks = [
     name: "Discord",
     href: "https://discord.gg/g4stgqxahv",
     target: "_blank",
-    icon: <DiscordLogo className="size-6 sm:hidden" />,
+    icon: <DiscordLogo className="size-6 md:hidden" />,
   },
   {
     name: "Explore",
     href: "/explore",
     target: "",
-    icon: <Search className="sm:hidden" />,
+    icon: <Search className="md:hidden" />,
   },
   {
     name: "Vote",
     href: "/vote",
     target: "",
-    icon: <Vote className="sm:hidden" />,
+    icon: <Vote className="md:hidden" />,
   },
   {
     name: "Map",
     href: "https://map.worldmc.net",
     target: "",
-    icon: <Map className="sm:hidden" />,
+    icon: <Map className="md:hidden" />,
   },
   {
     name: "Store",
     href: "https://worldmc-710.tebex.io/",
     target: "_blank",
-    icon: <Store className="sm:hidden" />,
+    icon: <Store className="md:hidden" />,
   },
 ] satisfies MenuLink[];
 
@@ -63,9 +63,9 @@ export default function Nav() {
         </Link>
       </div>
       <div className="navbar-end">
-        <ul className="menu menu-horizontal hidden p-0 sm:flex">{navLinks}</ul>
+        <ul className="menu menu-horizontal hidden p-0 md:flex">{navLinks}</ul>
         <div className="dropdown dropdown-end">
-          <div tabIndex={0} role="button" className="btn btn-ghost sm:hidden">
+          <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
             <Menu className="size-5" />
           </div>
           <ul tabIndex={0} className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow">
