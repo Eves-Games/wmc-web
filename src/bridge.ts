@@ -7,7 +7,10 @@ const API_BASE_URL = getEnvironment() === "development" ? "https://towny.worldmc
 
 async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const url = `${API_BASE_URL}${endpoint}`;
-  const response = await fetch(url, { ...options });
+  const headers = new Headers(options.headers);
+  headers.set("apiKey", process.env.BRIDGE_KEY!);
+
+  const response = await fetch(url, { ...options, headers });
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
