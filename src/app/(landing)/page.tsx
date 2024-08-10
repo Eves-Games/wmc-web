@@ -24,10 +24,10 @@ export default function Home() {
       <div className="mx-auto max-w-screen-lg">
         <div className="hero">
           <div className="hero-content flex-col md:flex-row">
-            <Image src="/old-towns/bank.jpg" alt="Minecraft Bank" width={300} height={300} className="max-w-sm rounded-lg shadow" />
-            <div>
+            <Image src="/old-towns/bank.jpg" alt="Minecraft Bank" width={300} height={300} className="max-w-sm rounded-box shadow" />
+            <div className="space-y-4 py-4 text-center md:text-left">
               <h1 className="text-5xl font-bold">Jam Packed</h1>
-              <p className="py-6">
+              <p>
                 Experience the thrill of a bustling Minecraft world like never before. WorldMC harnesses the power of Paper Folia, a
                 cutting-edge server software, to support up to 500 players simultaneously. This means more interactions, grander cities, and
                 epic battles on a scale you&apos;ve never seen in Minecraft. Join a vibrant community where every login brings new
@@ -45,9 +45,9 @@ export default function Home() {
               height={300}
               className="max-w-sm rounded-lg shadow"
             />
-            <div>
+            <div className="space-y-4 py-4 text-center md:text-left">
               <h1 className="text-5xl font-bold">Power, Authority, Influence</h1>
-              <p className="py-6">
+              <p>
                 Dive into a rich world of politics and economics with our enhanced Towny plugin. Found your own town, join alliances, and
                 climb the ranks of power. Engage in diplomatic negotiations, run for office, or become a business tycoon. Every decision
                 shapes the world around you. Will you be a benevolent leader, a shrewd diplomat, or a cunning entrepreneur? The choice is
@@ -59,9 +59,9 @@ export default function Home() {
         <div className="hero">
           <div className="hero-content flex-col md:flex-row">
             <Image src="/old-towns/rome.jpg" alt="Minecraft Rome" width={300} height={300} className="max-w-sm rounded-lg shadow" />
-            <div>
+            <div className="space-y-4 py-4 text-center md:text-left">
               <h1 className="text-5xl font-bold">It&apos;s Your Destiny</h1>
-              <p className="py-6">
+              <p>
                 Forge your own path in a world where players hold the reins. Our server features a player-run gold economy, where supply and
                 demand are dictated by the community. Start a business, trade rare resources, or become a master craftsman. With
                 player-managed shops and a fluctuating market, your economic savvy could lead you to untold riches. But remember, in this
