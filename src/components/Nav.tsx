@@ -14,7 +14,7 @@ interface MenuLink {
 const menuLinks = [
   {
     name: "Discord",
-    href: "/discord",
+    href: "https://discord.gg/g4stgqxahv",
     target: "_blank",
     icon: <DiscordLogo className="size-6 sm:hidden" />,
   },
@@ -32,13 +32,13 @@ const menuLinks = [
   },
   {
     name: "Map",
-    href: "/map",
+    href: "https://map.worldmc.net",
     target: "",
     icon: <Map className="sm:hidden" />,
   },
   {
     name: "Store",
-    href: "/store",
+    href: "https://worldmc-710.tebex.io/",
     target: "_blank",
     icon: <Store className="sm:hidden" />,
   },
