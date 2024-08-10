@@ -1,5 +1,10 @@
 import React from "react";
 import { Book } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Rules",
+};
 
 export default function RulesPage() {
   const ruleCategories = [

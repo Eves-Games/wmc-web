@@ -7,7 +7,15 @@ import Link from "next/link";
 import MinecraftItem from "@/components/minecraft/MinecraftItem";
 import { Flag, Shield, User } from "lucide-react";
 
-export const revalidate = 900;
+export const revalidate = 60;
+
+export async function generateMetadata({ params }: { params: { uuid: string } }) {
+  const town = await getTown(params.uuid);
+
+  return {
+    title: town.name,
+  };
+}
 
 export default async function Page({ params }: { params: { uuid: string } }) {
   const town = await getTown(params.uuid);

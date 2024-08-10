@@ -1,5 +1,10 @@
 import { ExternalLink, Gift, Info, Trophy, Award, Crown } from "lucide-react";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Vote",
+};
 
 export default async function Page() {
   const voteLinks = [

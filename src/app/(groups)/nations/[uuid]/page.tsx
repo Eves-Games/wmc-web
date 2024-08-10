@@ -6,7 +6,15 @@ import Link from "next/link";
 import clsx from "clsx";
 import { formatDateTime } from "@/format";
 
-export const revalidate = 900;
+export const revalidate = 60;
+
+export async function generateMetadata({ params }: { params: { uuid: string } }) {
+  const nation = await getNation(params.uuid);
+
+  return {
+    title: nation.name,
+  };
+}
 
 export default async function Page({ params }: { params: { uuid: string } }) {
   const nation = await getNation(params.uuid);

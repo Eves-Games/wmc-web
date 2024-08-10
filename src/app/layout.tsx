@@ -11,8 +11,13 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
-  title: "WorldMC",
-  description: "WorldMC is ...",
+  metadataBase: new URL("https://worldmc.net"),
+  title: {
+    default: "WorldMC",
+    template: "WorldMC - %s",
+  },
+  description:
+    "Explore a 1:1000 Earth map in Minecraft. Build empires, engage in politics, and shape the global economy in this immersive, player-driven world. With support for up to 500 players, enhanced Towny plugin, and a player-run gold economy, WorldMC offers unparalleled opportunities for adventure, leadership, and economic strategy in a bustling Minecraft community.",
 };
 
 export default function RootLayout({

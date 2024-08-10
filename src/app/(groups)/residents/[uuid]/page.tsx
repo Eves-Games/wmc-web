@@ -7,8 +7,16 @@ import MinecraftItem from "@/components/minecraft/MinecraftItem";
 
 export const revalidate = 60;
 
+export async function generateMetadata({ params }: { params: { uuid: string } }) {
+  const resident = await getResident(params.uuid);
+
+  return {
+    title: resident.name,
+  };
+}
+
 export default async function Page({ params }: { params: { uuid: string } }) {
-  let resident = await getResident(params.uuid);
+  const resident = await getResident(params.uuid);
 
   return (
     <section className="space-y-4">
