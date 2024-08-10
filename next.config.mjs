@@ -11,13 +11,17 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/gateway/start',
-        destination: 'https://api.minecraft.id/gateway/start',
+        source: '/map',
+        destination: 'https://map.worldmc.net',
       },
       {
-        source: '/api/gateway/verify',
-        destination: 'https://api.minecraft.id/gateway/verify',
+        source: '/store',
+        destination: 'https://worldmc-710.tebex.io/',
       },
+      {
+        source: '/discord',
+        destination: 'https://discord.gg/g4stgqxahv',
+      }
     ];
   },
 };

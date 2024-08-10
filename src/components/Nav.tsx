@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, Search, Store, Vote } from "lucide-react";
+import { Map, Menu, Search, Store, Vote } from "lucide-react";
 import DiscordLogo from "@/components/DiscordLogo";
 import { ReactNode } from "react";
 
@@ -14,7 +14,7 @@ interface MenuLink {
 const menuLinks = [
   {
     name: "Discord",
-    href: "https://discord.gg/g4stgqxahv",
+    href: "/discord",
     target: "_blank",
     icon: <DiscordLogo className="size-6 sm:hidden" />,
   },
@@ -31,8 +31,14 @@ const menuLinks = [
     icon: <Vote className="sm:hidden" />,
   },
   {
+    name: "Map",
+    href: "/map",
+    target: "",
+    icon: <Map className="sm:hidden" />,
+  },
+  {
     name: "Store",
-    href: "https://worldmc-710.tebex.io/",
+    href: "/store",
     target: "_blank",
     icon: <Store className="sm:hidden" />,
   },
