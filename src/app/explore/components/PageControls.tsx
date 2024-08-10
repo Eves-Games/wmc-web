@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export function PageControls({ totalPages }: { totalPages: number }) {
   const searchParams = useSearchParams();

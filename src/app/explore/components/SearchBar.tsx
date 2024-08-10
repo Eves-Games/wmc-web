@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
+import { Search, ChevronDown, Flag, Building2, Users } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Search, ChevronDown, Flag, Building2, Users, ArrowDownAZ, Coins, LandPlot } from "lucide-react";
 import { useDebouncedCallback } from "use-debounce";
 
 export function SearchBar({ placeholder }: { placeholder: string }): JSX.Element {
