@@ -21,7 +21,6 @@ export default function RulesPage() {
       title: "Behavior and Chat",
       rules: [
         "Use appropriate names for nations, towns, and player accounts.",
-        "Raiding and stealing is allowed, but protect your assets.",
         "No spamming or disruptive behavior in chat.",
         "Bullying, hate speech, and explicit content are prohibited.",
         "Do not impersonate other players or entities.",
@@ -34,10 +33,8 @@ export default function RulesPage() {
       rules: [
         "Griefing and stealing within your own town or nation is not allowed.",
         "Do not damage land within or around claims.",
-        "Griefing in wilderness is allowed, but may be rolled back.",
-        "Follow town claiming rules to ensure fair expansion.",
         "Major terraforming that alters the world map is not allowed.",
-        "Map art is permitted but must follow content guidelines.",
+        "Building map art is not permitted.",
       ],
     },
   ];
@@ -80,7 +77,7 @@ export default function RulesPage() {
         </div>
       ))}
 
-      <div className="alert alert-warning">
+      <div className="alert alert-warning shadow">
         <Book />
         <span>Remember: WorldMC staff has the final say in rule interpretation and enforcement. Play responsibly and have fun!</span>
       </div>
