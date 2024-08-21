@@ -19,6 +19,8 @@ const ColourMap = {
   residents: "to-green-200",
 };
 
+const replaceUnderscoresWithSpaces = (input: string): string => input.replace(/_/g, " ");
+
 export default async function TownyTable({ query, page, filter }: { query: string; page: number; filter: string }) {
   const townyObjectType: TownyObjectType = (filter.toLowerCase() as TownyObjectType) || "nations";
   const Icon = IconMap[townyObjectType];
@@ -46,7 +48,7 @@ export default async function TownyTable({ query, page, filter }: { query: strin
                     className="size-8"
                   />
                 )}
-                {item.name}
+                {replaceUnderscoresWithSpaces(item.name)}
               </div>
               <Icon />
             </Link>

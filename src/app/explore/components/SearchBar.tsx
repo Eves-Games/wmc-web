@@ -28,7 +28,7 @@ export function SearchBar({ placeholder }: { placeholder: string }): JSX.Element
   return (
     <div className="flex items-center justify-center gap-2">
       <label className="input input-bordered flex w-full items-center gap-2">
-        <Search className="opacity-70" />
+        <Search className="flex-shrink-0 opacity-70" />
         <input
           type="text"
           name="search"
@@ -36,6 +36,7 @@ export function SearchBar({ placeholder }: { placeholder: string }): JSX.Element
           defaultValue={searchParams.get("query")?.toString()}
           aria-label={placeholder}
           onChange={(e) => handleChange("query", e.target.value)}
+          className="w-full min-w-0"
         />
       </label>
       <div className="dropdown dropdown-end flex-none">
