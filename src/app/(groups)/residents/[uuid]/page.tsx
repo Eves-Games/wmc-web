@@ -43,7 +43,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
                 className={clsx("badge badge-xs", resident.isOnline ? "badge-primary" : "badge-error")}
                 title={resident.isOnline ? "Online" : "Offline"}
               ></span>
-              {!resident.isAdmin && (
+              {resident.isAdmin && (
                 <div className="badge badge-outline badge-lg">
                   <Star className="mr-1 size-4" /> Admin
                 </div>
