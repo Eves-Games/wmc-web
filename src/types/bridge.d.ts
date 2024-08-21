@@ -73,6 +73,7 @@ interface Town extends PartialTown {
   };
   plotGroups: string[];
   residents: PartialResident[];
+  discordLink?: string;
 }
 
 // Nation definitions
@@ -108,6 +109,7 @@ interface Nation extends PartialNation {
   towns: PartialTown[];
   allies: PartialNation[];
   enemies: PartialNation[];
+  discordLink?: string;
 }
 
 // Paginated
