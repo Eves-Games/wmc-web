@@ -5,9 +5,12 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import MinecraftItem from "@/components/minecraft/MinecraftItem";
-import { Flag, Shield, User } from "lucide-react";
+import { Flag, Medal, Shield, User, Users } from "lucide-react";
+import DiscordLogo from "@/components/DiscordLogo";
 
 export const revalidate = 60;
+
+const replaceUnderscoresWithSpaces = (input: string): string => input.replace(/_/g, " ");
 
 export async function generateMetadata({ params }: { params: { uuid: string } }) {
   let town = await getTown(params.uuid);
@@ -31,33 +34,38 @@ export default async function Page({ params }: { params: { uuid: string } }) {
         <figure className="drop-shadow">
           <Banner baseColour="white-dye" primaryPattern={{ name: "Creeper Charge", colour: "red-dye" }} secondaryPattern={null} />
         </figure>
-        <div className="flex w-full flex-col justify-between">
-          <div>
-            <div className="flex justify-between gap-2">
-              <h1 className="text-xl font-black">{town.name}</h1>
-              <div className="badge badge-lg">
-                <MinecraftItem imageSrc="/minecraft/item/gold_ingot.png" className="mr-1 size-4" /> {town.bankAccount.toLocaleString()}
-              </div>
-            </div>
+        <div className="flex w-full flex-col justify-between gap-2">
+          <div className="flex-1">
+            <h1 className="text-xl font-black">{replaceUnderscoresWithSpaces(town.name)}</h1>
             <p>
               By{" "}
               <Link href={`/residents/${town.mayor.UUID}`} className="link-hover link-secondary">
                 {town.mayor.name}
               </Link>
             </p>
-            <i>
-              Founded {formatDateTime(town.registered)} by <strong>{town.founder}</strong>
-            </i>
+            <i>Founded {formatDateTime(town.registered)}</i>
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <div className="badge badge-lg bg-indigo-400 text-black">level {town.level}</div>
-            <div className="badge badge-info badge-lg">{town.residents.length} residents</div>
-            <div className={clsx("badge badge-lg", town.isOpen ? "badge-primary" : "badge-warning")}>
-              {town.isOpen ? "open" : "invite-only"}
+            {town.discordLink && (
+              <div className="badge badge-lg">
+                <DiscordLogo className="mr-1 size-4" />
+                <Link href={town.discordLink} className="link-hover link-secondary">
+                  Discord
+                </Link>
+              </div>
+            )}
+            <div className="badge badge-lg">
+              <MinecraftItem imageSrc="/minecraft/item/gold_ingot.png" className="mr-1 size-4" /> {town.bankAccount.toLocaleString()}
             </div>
-            <div className={clsx("badge badge-lg", town.isPublic ? "badge-primary" : "badge-error")}>
-              {town.isPublic ? "public-spawn" : "private-spawn"}
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            <div className="badge badge-info badge-lg">
+              <Medal className="mr-1 size-4" /> Lvl {town.level}
+            </div>
+            <div className="badge badge-info badge-lg">
+              <Users className="mr-1 size-4" /> {town.residents.length}
             </div>
           </div>
         </div>
@@ -79,7 +87,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
           href={`/nations/${town.nation.UUID}`}
           className="btn btn-lg btn-block justify-between bg-gradient-to-r from-base-200 to-violet-200"
         >
-          {town.nation.name}
+          {replaceUnderscoresWithSpaces(town.nation.name)}
           <Flag />
         </Link>
       ) : (

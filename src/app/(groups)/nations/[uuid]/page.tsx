@@ -1,12 +1,14 @@
 import { getNation } from "@/bridge";
-import { Building2, Flag, Landmark } from "lucide-react";
+import { Building2, Flag, Landmark, Medal, Users } from "lucide-react";
 import MinecraftItem from "@/components/minecraft/MinecraftItem";
 import { Banner } from "@/banners";
 import Link from "next/link";
-import clsx from "clsx";
 import { formatDateTime } from "@/format";
+import DiscordLogo from "@/components/DiscordLogo";
 
 export const revalidate = 60;
+
+const replaceUnderscoresWithSpaces = (input: string): string => input.replace(/_/g, " ");
 
 export async function generateMetadata({ params }: { params: { uuid: string } }) {
   let nation = await getNation(params.uuid);
@@ -36,14 +38,9 @@ export default async function Page({ params }: { params: { uuid: string } }) {
         <figure className="drop-shadow">
           <Banner baseColour="white-dye" primaryPattern={{ name: "Creeper Charge", colour: "red-dye" }} secondaryPattern={null} />
         </figure>
-        <div className="flex w-full flex-col justify-between">
-          <div>
-            <div className="flex justify-between gap-2">
-              <h1 className="text-xl font-black">{nation.name}</h1>
-              <div className="badge badge-lg">
-                <MinecraftItem imageSrc="/minecraft/item/gold_ingot.png" className="mr-1 size-4" /> {nation.bankAccount.toLocaleString()}
-              </div>
-            </div>
+        <div className="flex w-full flex-col justify-between gap-2">
+          <div className="flex-1">
+            <h1 className="text-xl font-black">{replaceUnderscoresWithSpaces(nation.name)}</h1>
             <p>
               By{" "}
               <Link href={`/residents/${nation.king.UUID}`} className="link-hover link-secondary">
@@ -52,14 +49,30 @@ export default async function Page({ params }: { params: { uuid: string } }) {
             </p>
             <i>Founded {formatDateTime(nation.registered)}</i>
           </div>
+
           <div className="flex flex-wrap gap-2">
-            <div className="badge badge-lg bg-indigo-400 text-black">level {nation.level}</div>
-            <div className="badge badge-info badge-lg">{nation.numTowns} towns</div>
-            <div className={clsx("badge badge-lg", nation.isOpen ? "badge-primary" : "badge-warning")}>
-              {nation.isOpen ? "open" : "invite-only"}
+            {nation.discordLink && (
+              <div className="badge badge-lg">
+                <DiscordLogo className="mr-1 size-4" />
+                <Link href={nation.discordLink} className="link-hover link-secondary">
+                  Discord
+                </Link>
+              </div>
+            )}
+            <div className="badge badge-lg">
+              <MinecraftItem imageSrc="/minecraft/item/gold_ingot.png" className="mr-1 size-4" /> {nation.bankAccount.toLocaleString()}
             </div>
-            <div className={clsx("badge badge-lg", nation.isPublic ? "badge-primary" : "badge-error")}>
-              {nation.isPublic ? "public-spawn" : "private-spawn"}
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            <div className="badge badge-info badge-lg">
+              <Medal className="mr-1 size-4" /> Lvl {nation.level}
+            </div>
+            <div className="badge badge-info badge-lg">
+              <Users className="mr-1 size-4" /> {nation.numResidents}
+            </div>
+            <div className="badge badge-info badge-lg">
+              <Building2 className="mr-1 size-4" /> {nation.numTowns}
             </div>
           </div>
         </div>
@@ -120,7 +133,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
             className="btn btn-lg btn-block justify-between bg-gradient-to-r from-base-200 to-blue-200"
             key={nation.capital.UUID}
           >
-            {nation.capital.name} (Capital)
+            {replaceUnderscoresWithSpaces(nation.capital.name)} (Capital)
             <Landmark />
           </Link>
           {nation.towns
@@ -131,7 +144,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
                 className="btn btn-lg btn-block justify-between bg-gradient-to-r from-base-200 to-blue-200"
                 key={town.UUID}
               >
-                {town.name}
+                {replaceUnderscoresWithSpaces(town.name)}
                 <Building2 />
               </Link>
             ))}
@@ -149,7 +162,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
               className="btn btn-lg btn-block justify-between bg-gradient-to-r from-green-200 to-violet-200"
               key={nation.UUID}
             >
-              {nation.name}
+              {replaceUnderscoresWithSpaces(nation.name)}
               <Flag />
             </Link>
           ))}
@@ -167,7 +180,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
               className="btn btn-lg btn-block justify-between bg-gradient-to-r from-red-200 to-violet-200"
               key={nation.UUID}
             >
-              {nation.name}
+              {replaceUnderscoresWithSpaces(nation.name)}
               <Flag />
             </Link>
           ))}
