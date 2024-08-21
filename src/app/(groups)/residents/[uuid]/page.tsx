@@ -12,6 +12,11 @@ export async function generateMetadata({ params }: { params: { uuid: string } })
 
   return {
     title: resident.name,
+    description:
+      resident.name +
+      " is one of the thousands of residents on WorldMC. Join " +
+      resident.name +
+      " on WorldMC and explore Minecraft Earth together!",
   };
 }
 

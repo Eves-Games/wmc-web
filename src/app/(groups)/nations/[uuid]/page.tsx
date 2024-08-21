@@ -9,10 +9,21 @@ import { formatDateTime } from "@/format";
 export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: { uuid: string } }) {
-  const nation = await getNation(params.uuid);
+  let nation = await getNation(params.uuid);
+  nation.name = replaceUnderscoresWithSpaces(nation.name);
+
+  const rPlural = nation.numResidents > 1 ? "residents" : "resident";
 
   return {
     title: nation.name,
+    description:
+      nation.name +
+      " is a nation on WorldMC owned by " +
+      nation.king.name +
+      " with " +
+      nation.numResidents +
+      ` ${rPlural}\n` +
+      nation.board,
   };
 }
 

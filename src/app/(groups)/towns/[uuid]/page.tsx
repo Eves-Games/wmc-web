@@ -10,10 +10,15 @@ import { Flag, Shield, User } from "lucide-react";
 export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: { uuid: string } }) {
-  const town = await getTown(params.uuid);
+  let town = await getTown(params.uuid);
+  town.name = replaceUnderscoresWithSpaces(town.name);
+
+  const rPlural = town.residents.length > 1 ? "residents" : "resident";
 
   return {
     title: town.name,
+    description:
+      town.name + " is a town on WorldMC owned by " + town.mayor.name + " with " + town.residents.length + ` ${rPlural}.\n` + town.board,
   };
 }
 
