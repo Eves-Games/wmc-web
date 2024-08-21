@@ -64,16 +64,18 @@ export default async function Page({ params }: { params: { uuid: string } }) {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            {resident.isKing && (
+            {resident.isKing ? (
               <div className="badge badge-success badge-lg">
                 <Crown className="mr-1 size-4" /> King
               </div>
+            ) : (
+              resident.isMayor && (
+                <div className="badge badge-primary badge-lg">
+                  <Shield className="mr-1 size-4" /> Mayor
+                </div>
+              )
             )}
-            {resident.isMayor && (
-              <div className="badge badge-primary badge-lg">
-                <Shield className="mr-1 size-4" /> Mayor
-              </div>
-            )}
+
             {resident.isNPC && (
               <div className="badge badge-neutral badge-lg">
                 <Bot className="mr-1 size-4" /> NPC
