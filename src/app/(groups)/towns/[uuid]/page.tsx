@@ -27,7 +27,6 @@ export async function generateMetadata({ params }: { params: { uuid: string } })
 
 export default async function Page({ params }: { params: { uuid: string } }) {
   const town = await getTown(params.uuid);
-  console.log(town);
 
   const bannerType = town.bannerMeta?.type || "WHITE_BANNER";
   const bannerPatterns = town.bannerMeta?.patterns || null;
