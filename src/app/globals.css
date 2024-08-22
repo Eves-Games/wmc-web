@@ -6,13 +6,3 @@
   width: 80px;
   height: 156px;
 }
-
-.banner-sm {
-  width: 15px;
-  height: 30px;
-}
-
-.banner-shadow {
-  background-image: url(/minecraft/banner-shadow.png);
-  z-index: 50;
-}
