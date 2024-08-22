@@ -43,6 +43,7 @@ interface Resident extends PartialResident {
 interface PartialTown {
   name: string;
   UUID: string;
+  bannerMeta?: BannerMeta;
 }
 
 interface Town extends PartialTown {
@@ -74,13 +75,13 @@ interface Town extends PartialTown {
   plotGroups: string[];
   residents: PartialResident[];
   discordLink?: string;
-  bannerMeta?: BannerMeta;
 }
 
 // Nation
 interface PartialNation {
   name: string;
   UUID: string;
+  bannerMeta?: BannerMeta;
 }
 
 interface Nation extends PartialNation {
@@ -111,7 +112,6 @@ interface Nation extends PartialNation {
   allies: PartialNation[];
   enemies: PartialNation[];
   discordLink?: string;
-  bannerMeta?: BannerMeta;
 }
 
 // Banner

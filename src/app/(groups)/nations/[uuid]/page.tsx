@@ -1,7 +1,6 @@
 import { getNation } from "@/bridge";
 import { Building2, Flag, Landmark, Medal, Users } from "lucide-react";
 import MinecraftItem from "@/components/minecraft/MinecraftItem";
-import { Banner } from "@/banners";
 import Link from "next/link";
 import { formatDateTime } from "@/format";
 import DiscordLogo from "@/components/DiscordLogo";
@@ -32,6 +31,7 @@ export async function generateMetadata({ params }: { params: { uuid: string } })
 
 export default async function Page({ params }: { params: { uuid: string } }) {
   const nation = await getNation(params.uuid);
+  console.log(nation.bannerMeta);
 
   const bannerType = nation.bannerMeta?.type || "WHITE_BANNER";
   const bannerPatterns = nation.bannerMeta?.patterns || null;
