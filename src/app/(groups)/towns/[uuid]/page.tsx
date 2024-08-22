@@ -7,6 +7,7 @@ import Link from "next/link";
 import MinecraftItem from "@/components/minecraft/MinecraftItem";
 import { Flag, Medal, Shield, User, Users } from "lucide-react";
 import DiscordLogo from "@/components/DiscordLogo";
+import MinecraftBanner from "@/components/minecraft/MinecraftBanner";
 
 export const revalidate = 60;
 
@@ -28,11 +29,14 @@ export async function generateMetadata({ params }: { params: { uuid: string } })
 export default async function Page({ params }: { params: { uuid: string } }) {
   const town = await getTown(params.uuid);
 
+  const bannerType = town.bannerMeta?.type || "WHITE_BANNER";
+  const bannerPatterns = town.bannerMeta?.patterns || null;
+
   return (
     <section className="space-y-4">
       <div className="flex gap-4 rounded-box bg-gradient-to-r from-base-200 to-blue-200 p-4 shadow">
         <figure className="drop-shadow">
-          <Banner baseColour="white-dye" primaryPattern={{ name: "Creeper Charge", colour: "red-dye" }} secondaryPattern={null} />
+          <MinecraftBanner type={bannerType} patterns={bannerPatterns} className="banner" />
         </figure>
         <div className="flex w-full flex-col justify-between gap-2">
           <div className="flex-1">

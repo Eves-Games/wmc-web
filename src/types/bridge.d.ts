@@ -1,4 +1,4 @@
-// Resident definitions
+// Resident
 interface PartialResident {
   name: string;
   UUID: string;
@@ -39,7 +39,7 @@ interface Resident extends PartialResident {
   };
 }
 
-// Town definitions
+// Town
 interface PartialTown {
   name: string;
   UUID: string;
@@ -74,9 +74,10 @@ interface Town extends PartialTown {
   plotGroups: string[];
   residents: PartialResident[];
   discordLink?: string;
+  bannerMeta?: BannerMeta;
 }
 
-// Nation definitions
+// Nation
 interface PartialNation {
   name: string;
   UUID: string;
@@ -110,6 +111,16 @@ interface Nation extends PartialNation {
   allies: PartialNation[];
   enemies: PartialNation[];
   discordLink?: string;
+  bannerMeta?: BannerMeta;
+}
+
+// Banner
+interface BannerMeta {
+  type: string;
+  patterns: {
+    pattern: string;
+    color: string;
+  }[];
 }
 
 // Paginated

@@ -5,6 +5,7 @@ import { Banner } from "@/banners";
 import Link from "next/link";
 import { formatDateTime } from "@/format";
 import DiscordLogo from "@/components/DiscordLogo";
+import MinecraftBanner from "@/components/minecraft/MinecraftBanner";
 
 export const revalidate = 60;
 
@@ -32,11 +33,14 @@ export async function generateMetadata({ params }: { params: { uuid: string } })
 export default async function Page({ params }: { params: { uuid: string } }) {
   const nation = await getNation(params.uuid);
 
+  const bannerType = nation.bannerMeta?.type || "WHITE_BANNER";
+  const bannerPatterns = nation.bannerMeta?.patterns || null;
+
   return (
     <section className="space-y-4">
       <div className="flex gap-4 rounded-box bg-gradient-to-r from-base-200 to-violet-200 p-4 shadow">
         <figure className="drop-shadow">
-          <Banner baseColour="white-dye" primaryPattern={{ name: "Creeper Charge", colour: "red-dye" }} secondaryPattern={null} />
+          <MinecraftBanner type={bannerType} patterns={bannerPatterns} className="banner" />
         </figure>
         <div className="flex w-full flex-col justify-between gap-2">
           <div className="flex-1">
