@@ -31,12 +31,16 @@ const docsPages = [
     href: "/docs/ip",
   },
   {
-    name: "Voting",
-    href: "/docs/voting",
+    name: "Vote",
+    href: "/docs/vote",
   },
   {
     name: "Custom Recipes",
     href: "/docs/recipes",
+  },
+  {
+    name: "Server Rules",
+    href: "/docs/rules",
   },
 ] satisfies MenuLink[];
 

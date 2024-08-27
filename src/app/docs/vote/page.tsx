@@ -1,22 +1,17 @@
 import { ExternalLink, Info } from "lucide-react";
 import Link from "next/link";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Vote",
-};
+const voteLinks = [
+  { name: "Minecraft-MP", url: "https://minecraft-mp.com/server/334708/vote/" },
+  { name: "Planet Minecraft", url: "https://www.planetminecraft.com/server/worldmc-6355473/vote/" },
+  { name: "Minecraft Servers", url: "https://minecraftservers.org/vote/664730" },
+  { name: "TopG", url: "https://topg.org/minecraft-servers/server-665790" },
+];
 
-export default async function Page() {
-  const voteLinks = [
-    { name: "Minecraft-MP", url: "https://minecraft-mp.com/server/334708/vote/" },
-    { name: "Planet Minecraft", url: "https://www.planetminecraft.com/server/worldmc-6355473/vote/" },
-    { name: "Minecraft Servers", url: "https://minecraftservers.org/vote/664730" },
-    { name: "TopG", url: "https://topg.org/minecraft-servers/server-665790" },
-  ];
-
+export default function Page() {
   return (
-    <section className="mx-auto max-w-screen-lg space-y-4">
-      <h1 className="text-center text-5xl font-black">Vote</h1>
+    <section className="space-y-4">
+      <h1 className="text-5xl font-black">Vote</h1>
 
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
         {voteLinks.map((link, index) => (
