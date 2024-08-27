@@ -36,19 +36,15 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="drawer lg:drawer-open">
-      <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content p-4">{children}</div>
-      <div className="drawer-side border-r">
-        <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-        <ul className="menu w-56 p-4 text-base-content">
-          {docsPages.map((doc) => (
-            <li key={doc.name}>
-              <Link href={doc.href}>{doc.name}</Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className="flex">
+      <ul className="hidden min-h-full w-56 flex-shrink-0 border-r p-4 lg:menu">
+        {docsPages.map((page: docsPage) => (
+          <li key={page.name}>
+            <Link href={page.href}>{page.name}</Link>
+          </li>
+        ))}
+      </ul>
+      <div className="w-full py-4 lg:p-4">{children}</div>
     </div>
   );
 }
