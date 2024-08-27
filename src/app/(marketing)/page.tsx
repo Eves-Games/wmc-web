@@ -1,6 +1,6 @@
-import CopyIp from "./components/CopyIp";
 import WorldMap from "@/components/WorldMap";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -17,7 +17,9 @@ export default function Home() {
               Explore a 1:1000 Earth map in Minecraft. Build empires, engage in politics, and shape the global economy in this immersive,
               player-driven world.
             </p>
-            <CopyIp />
+            <Link href="/docs/ip" className="btn btn-primary">
+              Join WorldMC
+            </Link>
           </div>
         </div>
       </div>

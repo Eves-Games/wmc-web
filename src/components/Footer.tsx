@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function Footer() {
   return (
-    <footer className="footer rounded-box bg-base-100 p-10 shadow">
+    <footer className="footer border-t p-10">
       <aside>
         <Image src={"/worldmc.png"} alt="WorldMC Icon" className="size-12" width={100} height={100} />
         <p>

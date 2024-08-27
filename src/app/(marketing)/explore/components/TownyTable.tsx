@@ -4,7 +4,6 @@ import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import { fetchTownyObjects } from "../actions";
 import { PageControls } from "./PageControls";
-import MinecraftBanner from "@/components/minecraft/MinecraftBanner";
 
 type TownyObjectType = "nations" | "towns" | "residents";
 

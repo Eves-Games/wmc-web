@@ -1,4 +1,4 @@
-import { ExternalLink, Gift, Info, Trophy, Award, Crown } from "lucide-react";
+import { ExternalLink, Info } from "lucide-react";
 import Link from "next/link";
 import { Metadata } from "next";
 
@@ -14,15 +14,8 @@ export default async function Page() {
     { name: "TopG", url: "https://topg.org/minecraft-servers/server-665790" },
   ];
 
-  const milestones = [
-    { votes: 100, reward: "64 Gold", icon: <Gift className="size-8 text-amber-500" /> },
-    { votes: 200, reward: "8 Netherite", icon: <Award className="size-8 text-purple-500" /> },
-    { votes: 400, reward: "1 Elytra", icon: <Crown className="size-8 text-blue-500" /> },
-    { votes: 800, reward: "Owner's Secret", icon: <Trophy className="size-8 text-green-500" /> },
-  ];
-
   return (
-    <section className="space-y-4">
+    <section className="mx-auto max-w-screen-lg space-y-4">
       <h1 className="text-center text-5xl font-black">Vote</h1>
 
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2">

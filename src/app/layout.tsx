@@ -27,9 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={twMerge(rubik.className, "mx-auto grid h-screen max-w-screen-xl grid-rows-[auto_1fr_auto] space-y-4 p-4")}>
-        <Nav />
-        {children}
+      <body className={twMerge(rubik.className, "mx-auto h-screen max-w-screen-xl px-4")}>
+        <div className="min-h-screen">
+          <Nav />
+          {children}
+        </div>
         <Footer />
       </body>
     </html>

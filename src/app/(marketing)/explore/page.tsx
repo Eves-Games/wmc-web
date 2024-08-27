@@ -14,7 +14,7 @@ export default function Page({ searchParams }: { searchParams: { query?: string;
   const filter = searchParams?.filter || "";
 
   return (
-    <section className="space-y-4 text-center">
+    <section className="mx-auto max-w-screen-md space-y-4 text-center">
       <h1 className="text-5xl font-black">Explore</h1>
       <SearchBar placeholder="Search Earth..." />
       <TownyTable page={page} query={query} filter={filter} />

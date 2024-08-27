@@ -1,52 +1,49 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Map, Menu, Search, Store, Vote } from "lucide-react";
-import DiscordLogo from "@/components/DiscordLogo";
+import { ExternalLink, Menu } from "lucide-react";
 import { ReactNode } from "react";
 
 interface MenuLink {
   name: string;
   href: string;
   target: string;
-  icon: ReactNode;
+  icon?: ReactNode;
 }
 
 const menuLinks = [
   {
-    name: "Discord",
-    href: "https://discord.gg/g4stgqxahv",
-    target: "_blank",
-    icon: <DiscordLogo className="size-6 md:hidden" />,
-  },
-  {
     name: "Explore",
     href: "/explore",
     target: "",
-    icon: <Search className="md:hidden" />,
   },
   {
-    name: "Vote",
-    href: "/vote",
+    name: "Docs",
+    href: "/docs",
     target: "",
-    icon: <Vote className="md:hidden" />,
   },
   {
     name: "Map",
     href: "https://map.worldmc.net",
     target: "_blank",
-    icon: <Map className="md:hidden" />,
+    icon: <ExternalLink className="size-4" />,
   },
   {
     name: "Store",
     href: "https://worldmc-710.tebex.io/",
     target: "_blank",
-    icon: <Store className="md:hidden" />,
+    icon: <ExternalLink className="size-4" />,
+  },
+  {
+    name: "Discord",
+    href: "https://discord.gg/g4stgqxahv",
+    target: "_blank",
+    icon: <ExternalLink className="size-4" />,
   },
 ] satisfies MenuLink[];
 
 const navLinks = menuLinks.map((menuLink) => (
   <li key={menuLink.name}>
-    <Link className="flex justify-between" href={menuLink.href} target={menuLink.target}>
+    <Link href={menuLink.href} target={menuLink.target}>
       {menuLink.name}
       {menuLink.icon}
     </Link>
@@ -55,16 +52,16 @@ const navLinks = menuLinks.map((menuLink) => (
 
 export default function Nav() {
   return (
-    <div className="navbar rounded-box bg-base-100 shadow">
-      <div className="navbar-start">
+    <div className="navbar border-b">
+      <div className="flex-0">
         <Link className="btn btn-ghost text-xl" href="/">
           <Image src={"/worldmc.png"} alt="WorldMC Icon" className="size-6" width={100} height={100} />
-          WorldMC
+          <span className="hidden lg:block">WorldMC</span>
         </Link>
       </div>
-      <div className="navbar-end">
+      <div className="flex-1">
         <ul className="menu menu-horizontal hidden p-0 md:flex">{navLinks}</ul>
-        <div className="dropdown dropdown-end">
+        <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
             <Menu className="size-5" />
           </div>
@@ -73,6 +70,10 @@ export default function Nav() {
           </ul>
         </div>
       </div>
+      <Link href="/docs/ip" className="btn btn-primary btn-sm">
+        play.WorldMC.net
+        <div className="badge">1.21.x</div>
+      </Link>
     </div>
   );
 }
