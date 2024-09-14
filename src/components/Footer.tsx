@@ -17,7 +17,7 @@ export function Footer() {
         <Link href="/" className="link-hover link">
           Home
         </Link>
-        <Link href="https://discord.gg/g4stgqxahv" target="_blank" className="link-hover link">
+        <Link href="https://discord.gg/JRMYBhDbBb" target="_blank" className="link-hover link">
           Discord
         </Link>
       </nav>

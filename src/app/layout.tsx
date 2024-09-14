@@ -68,7 +68,7 @@ const menuLinks = [
   },
   {
     name: "Discord",
-    href: "https://discord.gg/g4stgqxahv",
+    href: "https://discord.gg/JRMYBhDbBb",
     target: "_blank",
     icon: <ExternalLink className="size-4" />,
   },

@@ -52,7 +52,6 @@ interface Town extends PartialTown {
   board: string;
   registered: number;
   founder: string;
-  townBlocks: number;
   isPublic: boolean;
   isNeutral: boolean;
   isOpen: boolean;
@@ -72,6 +71,14 @@ interface Town extends PartialTown {
     y: number;
     z: number;
   };
+  townBlocks: {
+    name: string;
+    type: string;
+    isHomeBlock: boolean;
+    plotTax: number;
+    resident?: PartialResident;
+    coordinates: { x: number; z: number };
+  }[];
   plotGroups: string[];
   residents: PartialResident[];
   discordLink?: string;
