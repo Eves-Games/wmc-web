@@ -31,7 +31,7 @@ export default async function TownyTable({ material, page }: { material: string;
                   )}
                 </div>
               </div>
-              <div className="flex shrink-0 items-center space-x-2 font-normal">
+              <div className="flex shrink-0 items-center space-x-1 font-normal">
                 <div className="badge badge-lg whitespace-nowrap">
                   <MinecraftItem imageSrc={`/minecraft/combined/${shop.item.toLowerCase()}.png`} className="mr-1 size-4" />
                   {shop.amount}
