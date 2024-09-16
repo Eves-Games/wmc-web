@@ -72,7 +72,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
               </div>
             )}
             <div className="badge badge-lg">
-              <MinecraftItem imageSrc="/minecraft/item/gold_ingot.png" className="mr-1 size-4" /> {town.bankAccount.toLocaleString()}
+              <MinecraftItem imageSrc="/minecraft/combined/gold_ingot.png" className="mr-1 size-4" /> {town.bankAccount.toLocaleString()}
             </div>
           </div>
 
