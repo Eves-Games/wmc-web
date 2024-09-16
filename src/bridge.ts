@@ -1,7 +1,7 @@
 "use server";
 
 import { getEnvironment } from "./environment";
-import type { PartialResident, PartialTown, Resident, Town, PartialNation, Nation, PaginatedResult } from "@/types/bridge";
+import type { PartialResident, PartialTown, Resident, Town, PartialNation, Nation, PaginatedResult, Shop } from "@/types/bridge";
 
 const API_BASE_URL = getEnvironment() === "development" ? "https://towny.worldmc.net/dev" : "https://towny.worldmc.net";
 
@@ -48,4 +48,9 @@ export async function getResidents(page: number = 1, search?: string): Promise<P
 
 export async function getResident(UUID: string): Promise<Resident> {
   return apiRequest<Resident>(`/residents/${UUID}`);
+}
+
+// Shops
+export async function getShops(page: number = 1, item: string): Promise<PaginatedResult<Shop>> {
+  return apiRequest<PaginatedResult<Shop>>(`/shops?page=${page}&material=${item}`);
 }

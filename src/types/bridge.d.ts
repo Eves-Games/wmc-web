@@ -130,6 +130,21 @@ interface BannerMeta {
   }[];
 }
 
+// Shops
+interface Shop {
+  name: string;
+  id: number;
+  town?: PartialTown;
+  owner: {
+    name: string;
+    UUID: string;
+  };
+  item: string;
+  amount: number;
+  price: number;
+  stock: number;
+}
+
 // Paginated
 interface PaginatedResult<T> {
   data: T[];
@@ -137,4 +152,4 @@ interface PaginatedResult<T> {
   totalPages: number;
 }
 
-export type { PartialResident, Resident, PartialTown, Town, PartialNation, Nation, PaginatedResult };
+export type { PartialResident, Resident, PartialTown, Town, PartialNation, Nation, PaginatedResult, Shop };
