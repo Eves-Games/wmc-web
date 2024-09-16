@@ -25,7 +25,7 @@ export default async function TownyTable({ material, page }: { material: string;
                   className="size-8 shrink-0"
                 />
                 <div className="min-w-0 flex-1 text-left">
-                  <p className="truncate leading-5">{replaceUnderscoresWithSpaces(shop.owner.name)}&apos;s Shop ojasi0jfuajsofias</p>
+                  <p className="truncate leading-5">{replaceUnderscoresWithSpaces(shop.owner.name)}&apos;s Shop</p>
                   {shop.town && (
                     <p className="truncate text-sm font-normal text-base-content/70">{replaceUnderscoresWithSpaces(shop.town.name)}</p>
                   )}
