@@ -23,8 +23,6 @@ export function SearchBar({ placeholder }: { placeholder: string }): JSX.Element
     replace(`${pathname}?${params.toString()}`);
   }, 300);
 
-  const currentFilter = searchParams.get("filter");
-
   return (
     <label className="input input-bordered flex w-full items-center gap-2">
       <Search className="flex-shrink-0 opacity-70" />
@@ -32,7 +30,7 @@ export function SearchBar({ placeholder }: { placeholder: string }): JSX.Element
         type="text"
         name="search"
         placeholder={placeholder}
-        defaultValue={searchParams.get("query")?.toString()}
+        defaultValue={searchParams.get("material")?.toString()}
         aria-label={placeholder}
         onChange={(e) => handleChange("material", e.target.value)}
         className="w-full min-w-0"
