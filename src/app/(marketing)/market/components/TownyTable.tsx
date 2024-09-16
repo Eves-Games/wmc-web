@@ -7,7 +7,6 @@ import MinecraftItem from "@/components/minecraft/MinecraftItem";
 const replaceUnderscoresWithSpaces = (input: string): string => input.replace(/_/g, " ");
 
 export default async function TownyTable({ material, page }: { material: string; page: number; filter: string }) {
-  console.log(material);
   const shops = await fetchShops(page, material);
 
   return (
