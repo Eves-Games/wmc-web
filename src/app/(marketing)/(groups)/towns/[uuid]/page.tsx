@@ -7,6 +7,8 @@ import MinecraftItem from "@/components/minecraft/MinecraftItem";
 import { Flag, Landmark, Medal, Shield, User, Users } from "lucide-react";
 import DiscordLogo from "@/components/DiscordLogo";
 import MinecraftBanner from "@/components/minecraft/MinecraftBanner";
+import ResidentButton from "@/components/ui/towny/ResidentButton";
+import NationButton from "@/components/ui/towny/NationButton";
 
 export const revalidate = 60;
 
@@ -98,59 +100,18 @@ export default async function Page({ params }: { params: { uuid: string } }) {
       <p>{town.board}</p>
       <hr />
       <h2 className="text-xl font-black">Nation</h2>
-      {town.nation ? (
-        <Link
-          href={`/nations/${town.nation.UUID}`}
-          className="btn btn-lg btn-block justify-between bg-gradient-to-r from-base-200 to-violet-200"
-        >
-          {replaceUnderscoresWithSpaces(town.nation.name)}
-          <Flag />
-        </Link>
-      ) : (
-        <p>This town has no nation.</p>
-      )}
+      {town.nation ? <NationButton item={town.nation} /> : <p>This town has no nation.</p>}
       <hr />
       <h2 className="text-xl font-black">Residents ({town.residents.length})</h2>
       {town.residents.length == 0 ? (
         <p>This town has no residents.</p>
       ) : (
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
-          <Link
-            href={`/residents/${town.mayor.UUID}`}
-            className="btn btn-lg btn-block justify-between bg-gradient-to-r from-base-200 to-green-200"
-          >
-            <div className="flex items-center gap-4">
-              <Image
-                src={`https://crafatar.com/avatars/${town.mayor.UUID}?size=32&default=MHF_Steve&overlay`}
-                alt={`${town.mayor.name}'s Minecraft Face`}
-                height={32}
-                width={32}
-                className="size-8"
-              />
-              {town.mayor.name} (Mayor)
-            </div>
-            <Shield />
-          </Link>
+          <ResidentButton item={town.mayor} key={town.mayor.UUID} showMayor={true} />
           {town.residents
             .filter((resident) => resident.UUID !== town.mayor.UUID)
             .map((resident) => (
-              <Link
-                href={`/residents/${resident.UUID}`}
-                className="btn btn-lg btn-block justify-between bg-gradient-to-r from-base-200 to-green-200"
-                key={resident.UUID}
-              >
-                <div className="flex items-center gap-4">
-                  <Image
-                    src={`https://crafatar.com/avatars/${resident.UUID}?size=32&default=MHF_Steve&overlay`}
-                    alt={`${resident.name}'s Minecraft Face`}
-                    height={32}
-                    width={32}
-                    className="size-8"
-                  />
-                  {resident.name}
-                </div>
-                <User />
-              </Link>
+              <ResidentButton item={resident} key={resident.UUID} />
             ))}
         </div>
       )}

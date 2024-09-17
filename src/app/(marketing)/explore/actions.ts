@@ -6,14 +6,14 @@ export async function fetchTownyObjects(page: number, query: string, type: strin
   let data;
 
   switch (type) {
-    case "nations":
-      data = await getNations(page, query);
+    case "residents":
+      data = await getResidents(page, query);
       break;
     case "towns":
       data = await getTowns(page, query);
       break;
-    case "residents":
-      data = await getResidents(page, query);
+    case "nations":
+      data = await getNations(page, query);
       break;
   }
 

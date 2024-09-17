@@ -1,10 +1,12 @@
 import { getResident } from "@/bridge";
 import { formatDateTime } from "@/format";
-import { Bot, Building2, Crown, Flag, LandPlot, Lock, Shield, Star, User, Users } from "lucide-react";
-import Image from "next/image";
+import { Bot, Crown, LandPlot, Lock, Shield, Star, Users } from "lucide-react";
 import Link from "next/link";
 import MinecraftItem from "@/components/minecraft/MinecraftItem";
 import clsx from "clsx";
+import ResidentButton from "@/components/ui/towny/ResidentButton";
+import NationButton from "@/components/ui/towny/NationButton";
+import TownButton from "@/components/ui/towny/TownButton";
 
 export const revalidate = 60;
 
@@ -108,24 +110,8 @@ export default async function Page({ params }: { params: { uuid: string } }) {
       <h2 className="text-xl font-black">Residence</h2>
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
         {!resident.town && "This player does not have any residence."}
-        {resident.town && (
-          <Link
-            href={`/towns/${resident.town.UUID}`}
-            className="btn btn-lg flex-1 justify-between bg-gradient-to-r from-base-200 to-blue-200"
-          >
-            {replaceUnderscoresWithSpaces(resident.town.name)}
-            <Building2 />
-          </Link>
-        )}
-        {resident.nation && (
-          <Link
-            href={`/nations/${resident.nation.UUID}`}
-            className="btn btn-lg flex-1 justify-between bg-gradient-to-r from-base-200 to-violet-200"
-          >
-            {replaceUnderscoresWithSpaces(resident.nation.name)}
-            <Flag />
-          </Link>
-        )}
+        {resident.town && <TownButton item={resident.town} />}
+        {resident.nation && <NationButton item={resident.nation} />}
       </div>
       <hr />
       <h2 className="text-xl font-black">Friends ({resident.friends.length})</h2>
@@ -134,23 +120,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
       ) : (
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
           {resident.friends.map((resident) => (
-            <Link
-              href={`/residents/${resident.UUID}`}
-              className="btn btn-lg btn-block justify-between bg-gradient-to-r from-base-200 to-green-200"
-              key={resident.UUID}
-            >
-              <div className="flex items-center gap-4">
-                <Image
-                  src={`https://crafatar.com/avatars/${resident.UUID}?size=32&default=MHF_Steve&overlay`}
-                  alt={`${resident.name}'s Minecraft Face`}
-                  height={32}
-                  width={32}
-                  className="size-8"
-                />
-                {resident.name}
-              </div>
-              <User />
-            </Link>
+            <ResidentButton item={resident} key={resident.UUID} />
           ))}
         </div>
       )}

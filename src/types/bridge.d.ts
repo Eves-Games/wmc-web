@@ -1,8 +1,14 @@
-// Resident
-interface PartialResident {
+// Generic
+interface TownyObject {
   name: string;
   UUID: string;
+}
+
+// Resident
+interface PartialResident extends TownyObject {
+  type: "resident";
   title: string;
+  town?: PartialTown;
 }
 
 interface Resident extends PartialResident {
@@ -30,7 +36,6 @@ interface Resident extends PartialResident {
   townRanks: string[];
   nationRanks: string[];
   friends: PartialResident[];
-  town?: PartialTown;
   nation?: PartialNation;
   jailStatus: {
     isJailed: boolean;
@@ -40,9 +45,9 @@ interface Resident extends PartialResident {
 }
 
 // Town
-interface PartialTown {
-  name: string;
-  UUID: string;
+interface PartialTown extends TownyObject {
+  type: "town";
+  numResidents: number;
   bannerMeta?: BannerMeta;
 }
 
@@ -64,7 +69,6 @@ interface Town extends PartialTown {
   };
   mayor: PartialResident;
   nation?: PartialNation;
-  numResidents: number;
   trustedResidents: number;
   spawn: {
     x: number;
@@ -85,9 +89,8 @@ interface Town extends PartialTown {
 }
 
 // Nation
-interface PartialNation {
-  name: string;
-  UUID: string;
+interface PartialNation extends TownyObject {
+  type: "nation";
   bannerMeta?: BannerMeta;
 }
 
@@ -152,4 +155,4 @@ interface PaginatedResult<T> {
   totalPages: number;
 }
 
-export type { PartialResident, Resident, PartialTown, Town, PartialNation, Nation, PaginatedResult, Shop };
+export type { PartialResident, Resident, PartialTown, Town, PartialNation, Nation, PaginatedResult, Shop, TownyObject };

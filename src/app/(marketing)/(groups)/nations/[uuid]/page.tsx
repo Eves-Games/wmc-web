@@ -1,10 +1,12 @@
 import { getNation } from "@/bridge";
-import { Building2, Flag, Landmark, Medal, Users } from "lucide-react";
+import { Building2, Medal, Users } from "lucide-react";
 import MinecraftItem from "@/components/minecraft/MinecraftItem";
 import Link from "next/link";
 import { formatDateTime } from "@/format";
 import DiscordLogo from "@/components/DiscordLogo";
 import MinecraftBanner from "@/components/minecraft/MinecraftBanner";
+import TownButton from "@/components/ui/towny/TownButton";
+import NationButton from "@/components/ui/towny/NationButton";
 
 export const revalidate = 60;
 
@@ -131,25 +133,11 @@ export default async function Page({ params }: { params: { uuid: string } }) {
         <p>This nation has no towns.</p>
       ) : (
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
-          <Link
-            href={`/towns/${nation.capital.UUID}`}
-            className="btn btn-lg btn-block justify-between bg-gradient-to-r from-base-200 to-blue-200"
-            key={nation.capital.UUID}
-          >
-            {replaceUnderscoresWithSpaces(nation.capital.name)} (Capital)
-            <Landmark />
-          </Link>
+          <TownButton item={nation.capital} showCapital={true} />
           {nation.towns
             .filter((town) => town.UUID !== nation.capital.UUID)
             .map((town) => (
-              <Link
-                href={`/towns/${town.UUID}`}
-                className="btn btn-lg btn-block justify-between bg-gradient-to-r from-base-200 to-blue-200"
-                key={town.UUID}
-              >
-                {replaceUnderscoresWithSpaces(town.name)}
-                <Building2 />
-              </Link>
+              <TownButton item={town} key={town.UUID} />
             ))}
         </div>
       )}
@@ -160,14 +148,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
       ) : (
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
           {nation.allies.map((nation) => (
-            <Link
-              href={`/nations/${nation.UUID}`}
-              className="btn btn-lg btn-block justify-between bg-gradient-to-r from-green-200 to-violet-200"
-              key={nation.UUID}
-            >
-              {replaceUnderscoresWithSpaces(nation.name)}
-              <Flag />
-            </Link>
+            <NationButton item={nation} key={nation.UUID} showRelation="ally" />
           ))}
         </div>
       )}
@@ -178,14 +159,7 @@ export default async function Page({ params }: { params: { uuid: string } }) {
       ) : (
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
           {nation.enemies.map((nation) => (
-            <Link
-              href={`/nations/${nation.UUID}`}
-              className="btn btn-lg btn-block justify-between bg-gradient-to-r from-red-200 to-violet-200"
-              key={nation.UUID}
-            >
-              {replaceUnderscoresWithSpaces(nation.name)}
-              <Flag />
-            </Link>
+            <NationButton item={nation} key={nation.UUID} showRelation="enemy" />
           ))}
         </div>
       )}
